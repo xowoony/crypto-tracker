@@ -4,6 +4,7 @@ import Router from "./Router";
 // GlobalStyle을 렌더링하게 되면 전체 body의 color는 red가 될 것이다.
 // 기본값 제거를 위한 스타일 셋
 const GlobalStyle = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -50,6 +51,18 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'PT Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 `;
 
