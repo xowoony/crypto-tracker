@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 
 function Coin() {
   // react-router-dom v6 이상의 경우
