@@ -4,8 +4,7 @@ import { DefaultTheme } from "styled-components";
 // 이 테마들은 styled.d.ts 파일 속 속성들과 같아야 한다.
 // 작성해준 후 export 를 해준다.
 export const theme: DefaultTheme = {
-  bgColor: "white",
-  textColor: "black",
-  btnColor: "red",
+  bgColor: "#353b48",
+  textColor: "#f5f6fa",
+  accentColor: "#e1b12c",
 };
-
