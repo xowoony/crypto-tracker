@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
+  height: 100vh;
   padding: 0px 20px;
 `;
 
 const Header = styled.header`
-  height: 100vh;
+  height: 10rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,14 +18,28 @@ const CoinsList = styled.ul``;
 const Coin = styled.li`
   background-color: white;
   color: ${(props) => props.theme.bgColor};
-  padding: 20px;
+
   border-radius: 15px;
   margin-bottom: 10px;
+  font-weight: 600;
+  a {
+    padding: 20px;
+    transition: color 0.2s ease-in;
+    display: block;
+  }
+
+  // react router link들이 결국 anchor로 바뀐다.
+  &:hover {
+    a {
+      color: ${(props) => props.theme.accentColor};
+    }
+  }
 `;
 
 const Title = styled.h1`
   font-size: 48px;
   color: ${(props) => props.theme.accentColor};
+  
 `;
 
 // Coins array
