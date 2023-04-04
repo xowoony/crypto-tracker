@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -65,9 +66,12 @@ function Coins() {
       </Header>
       {/* 코인은 symbol, name 등등이 있다. */}
       {/* coin.name, coin.symbol 로 작성하여 불러올 수 있다 */}
+      {/* &rarr 은 화살표이다. */}
       <CoinsList>
         {coins.map((coin) => (
-          <Coin key={coin.id}>{coin.name}</Coin>
+          <Coin key={coin.id}>
+            <Link to={`/${coin.id}`}>{coin.name} &rarr;</Link>
+          </Coin>
         ))}
       </CoinsList>
     </Container>
