@@ -47,6 +47,7 @@ const Title = styled.h1`
 const Loader = styled.div`
   text-align: center;
   font-size: 38px;
+  display: block;
 `;
 
 // interface(API로부터 받아오는 정보도 적어주어야 한다.)
@@ -93,7 +94,11 @@ function Coins() {
         <CoinsList>
           {coins.map((coin) => (
             <Coin key={coin.id}>
-              <Link to={`/${coin.id}`}>{coin.name} &rarr;</Link>
+              <Link to={`/${coin.id}`}>
+                {/* 코인의 로고 img태그에 src로 {}안 ``안에 작성한다. */}
+                <img src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`} alt="" />
+                {coin.name} &rarr;
+              </Link>
             </Coin>
           ))}
         </CoinsList>
