@@ -66,9 +66,11 @@ function Coins() {
     (async () => {
       const response = await fetch("https://api.coinpaprika.com/v1/coins");
       const json = await response.json(); // 그런다음 response로부터 json을 받아옴
-      console.log(json);
+      setCoins(json.slice(0, 100)); // 처음부터 100번째까지 잘라서 반환
     })();
   }, []);
+
+  console.log(coins);
 
   return (
     <Container>
