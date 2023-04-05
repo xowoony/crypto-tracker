@@ -68,13 +68,9 @@ function Coins() {
       const response = await fetch("https://api.coinpaprika.com/v1/coins");
       const json = await response.json(); // 그런다음 response로부터 json을 받아옴
       setCoins(json.slice(0, 100)); // 처음부터 100번째까지 잘라서 반환
-      setLoading(false);
+      // setLoading(false);
     })();
-
-    
   }, []);
-
-
 
   console.log(coins);
 
@@ -86,13 +82,17 @@ function Coins() {
       {/* 코인은 symbol, name 등등이 있다. */}
       {/* coin.name, coin.symbol 로 작성하여 불러올 수 있다 */}
       {/* &rarr 은 화살표이다. */}
-      <CoinsList>
-        {coins.map((coin) => (
-          <Coin key={coin.id}>
-            <Link to={`/${coin.id}`}>{coin.name} &rarr;</Link>
-          </Coin>
-        ))}
-      </CoinsList>
+      {loading ? (
+        "로딩 중입니다."
+      ) : (
+        <CoinsList>
+          {coins.map((coin) => (
+            <Coin key={coin.id}>
+              <Link to={`/${coin.id}`}>{coin.name} &rarr;</Link>
+            </Coin>
+          ))}
+        </CoinsList>
+      )}
     </Container>
   );
 }
