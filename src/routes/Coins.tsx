@@ -50,6 +50,12 @@ const Loader = styled.div`
   display: block;
 `;
 
+// img 컴포넌트
+const Image = styled.img`
+  width: 25px;
+  height: 25px;
+`
+
 // interface(API로부터 받아오는 정보도 적어주어야 한다.)
 interface CoinInterface {
   id: string;
@@ -96,7 +102,7 @@ function Coins() {
             <Coin key={coin.id}>
               <Link to={`/${coin.id}`}>
                 {/* 코인의 로고 img태그에 src로 {}안 ``안에 작성한다. */}
-                <img src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`} alt="" />
+                <Image src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`} alt="" />
                 {coin.name} &rarr;
               </Link>
             </Coin>
