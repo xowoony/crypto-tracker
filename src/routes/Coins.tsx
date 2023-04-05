@@ -21,14 +21,14 @@ const CoinsList = styled.ul``;
 const Coin = styled.li`
   background-color: white;
   color: ${(props) => props.theme.bgColor};
-
   border-radius: 15px;
   margin-bottom: 10px;
   font-weight: 600;
   a {
+    align-items: center;
+    display: flex;
     padding: 20px;
     transition: color 0.2s ease-in;
-    display: block;
   }
 
   // react router link들이 결국 anchor로 바뀐다.
@@ -51,12 +51,13 @@ const Loader = styled.div`
 `;
 
 // img 컴포넌트
-const Image = styled.img`
-  width: 25px;
-  height: 25px;
-`
+const Img = styled.img`
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+`;
 
-// interface(API로부터 받아오는 정보도 적어주어야 한다.)
+// interface (API로부터 받아오는 정보도 적어주어야 한다.)
 interface CoinInterface {
   id: string;
   name: string;
@@ -95,14 +96,17 @@ function Coins() {
       {/* coin.name, coin.symbol 로 작성하여 불러올 수 있다 */}
       {/* &rarr 은 화살표이다. */}
       {loading ? (
-        <Loader>로딩 중입니다...</Loader>
+        <Loader>로딩중입니다...</Loader>
       ) : (
         <CoinsList>
           {coins.map((coin) => (
             <Coin key={coin.id}>
-              <Link to={`/${coin.id}`}>
+              <Link to={`/${coin.id}`} state={coin}>
                 {/* 코인의 로고 img태그에 src로 {}안 ``안에 작성한다. */}
-                <Image src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`} alt="" />
+                <Img
+                  src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}
+                  alt=""
+                />
                 {coin.name} &rarr;
               </Link>
             </Coin>
