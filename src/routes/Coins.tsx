@@ -44,6 +44,11 @@ const Title = styled.h1`
   color: ${(props) => props.theme.accentColor};
 `;
 
+const Loader = styled.div`
+  text-align: center;
+  font-size: 38px;
+`;
+
 // interface(API로부터 받아오는 정보도 적어주어야 한다.)
 interface CoinInterface {
   id: string;
@@ -68,7 +73,7 @@ function Coins() {
       const response = await fetch("https://api.coinpaprika.com/v1/coins");
       const json = await response.json(); // 그런다음 response로부터 json을 받아옴
       setCoins(json.slice(0, 100)); // 처음부터 100번째까지 잘라서 반환
-      // setLoading(false);
+      setLoading(false);
     })();
   }, []);
 
@@ -83,7 +88,7 @@ function Coins() {
       {/* coin.name, coin.symbol 로 작성하여 불러올 수 있다 */}
       {/* &rarr 은 화살표이다. */}
       {loading ? (
-        "로딩 중입니다."
+        <Loader>로딩 중입니다...</Loader>
       ) : (
         <CoinsList>
           {coins.map((coin) => (
