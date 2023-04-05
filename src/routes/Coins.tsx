@@ -85,7 +85,7 @@ function Coins() {
     })();
   }, []);
 
-  console.log(coins);
+  // console.log(coins);
 
   return (
     <Container>

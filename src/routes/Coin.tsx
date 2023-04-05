@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 // 여기는 각각의 코인 페이지
-
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -30,7 +29,11 @@ const Loader = styled.div`
   display: block;
 `;
 
-
+interface RouteState {
+  state: {
+    name: string;
+  };
+}
 
 function Coin() {
   // react-router-dom v6 이상의 경우
@@ -38,7 +41,9 @@ function Coin() {
   // 따라서 const {coinId} = useParams(); 로만 적어줘도 상관 ㄴ
   const { coinId } = useParams(); // coinId를 받아서 parameter로 사용
   const [loading, setLoading] = useState(true);
-
+  // state 안에 있는 name을 가져오기 위한 작업
+  const { state } = useLocation() as RouteState;
+  console.log(state.name);
   return (
     <Container>
       <Header>
@@ -50,4 +55,3 @@ function Coin() {
 }
 
 export default Coin;
-
