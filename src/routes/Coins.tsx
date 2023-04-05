@@ -57,6 +57,7 @@ interface CoinInterface {
 
 function Coins() {
   const [coins, setCoins] = useState<CoinInterface[]>([]);
+  const [loading, setLoading] = useState(true);
   // useEffect
   // 특정한 시기에만 코드를 실행하기 위해선useEffect를 사용하면 된다.
   // 마지막에 빈배열을 전달해주면 컴포넌트가 시작할 때 한번만 실행된다.
@@ -67,8 +68,13 @@ function Coins() {
       const response = await fetch("https://api.coinpaprika.com/v1/coins");
       const json = await response.json(); // 그런다음 response로부터 json을 받아옴
       setCoins(json.slice(0, 100)); // 처음부터 100번째까지 잘라서 반환
+      setLoading(false);
     })();
+
+    
   }, []);
+
+
 
   console.log(coins);
 
