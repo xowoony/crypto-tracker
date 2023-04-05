@@ -43,11 +43,13 @@ function Coin() {
   const [loading, setLoading] = useState(true);
   // state 안에 있는 name을 가져오기 위한 작업
   const { state } = useLocation() as RouteState;
-  console.log(state.name);
   return (
     <Container>
       <Header>
-        <Title>{coinId}</Title>
+        {/* /coinID 로 바로 접속하면 시크릿모드에서 에러가 나는데 */}
+        {/* 그것은 home을 거쳐서 오지 않았기 때문에 state가 생성되지 않기 때문이다 */}
+        {/* ?를 붙여서 state가 존재하면 name을 가져오고, 아니라면 로딩중이라는 문구가 표시되게 함*/}
+        <Title>{state?.name || "로딩 중입니다..."}</Title>
       </Header>
       {loading ? <Loader>로딩중입니다...</Loader> : null}
     </Container>
