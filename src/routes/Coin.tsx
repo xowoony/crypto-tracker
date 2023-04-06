@@ -105,18 +105,14 @@ function Coin() {
   // react-router-dom v6 이상의 경우
   // useParams쓰는 순간 타입이 string or undefined로 설정됨.
   // 따라서 const {coinId} = useParams(); 로만 적어줘도 상관 ㄴ
-  const { coinId } = useParams(); // coinId를 받아서 parameter로 사용
   const [loading, setLoading] = useState(true);
-  // state 안에 있는 name을 가져오기 위한 작업
-  const { state } = useLocation() as RouteState;
-
+  const { coinId } = useParams(); // coinId를 받아서 parameter로 사용
+  const { state } = useLocation() as RouteState;// state 안에 있는 name을 가져오기 위한 작업
   // info state
-  // useState<InfoData>({}); 를 작성해줌으로써 타입스크립트는 info가 InfoData라고 인식
-  const [info, setInfo] = useState({});
-
+  // useState<InfoData>(); 를 작성해줌으로써 타입스크립트는 info가 InfoData라고 인식
+  const [info, setInfo] = useState<InfoData>();
   // priceInfo state
-  const [priceInfo, setPriceInfo] = useState({});
-
+  const [priceInfo, setPriceInfo] = useState<PriceData>();
   // useEffect - 컴포넌트가 생성될 때 한번만 실행됨
   useEffect(() => {
     // 캡슐화로 코드 한줄로 정리 - 이 한줄의 solution이 두개의 변수를 받는다.
@@ -124,13 +120,11 @@ function Coin() {
       // 2. 그 response로부터 json을 받는다.
       const infoData = await // 1. 여기에서 response를 받고
       (await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)).json();
-      console.log(infoData);
 
       // 가격정보 데이터 받아오기
       const priceData = await (
         await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
       ).json();
-      console.log(priceData);
 
       // setInfo, setPriceInfo
       setInfo(infoData); // infoData로 set
@@ -146,6 +140,7 @@ function Coin() {
         {/* ?를 붙여서 state가 존재하면 name을 가져오고, 아니라면 로딩중이라는 문구가 표시되게 함*/}
         <Title>{state?.name || "로딩 중입니다..."}</Title>
       </Header>
+      {/*  priceInfo?.quotes.USD.price */}
       {loading ? <Loader>로딩중입니다...</Loader> : null}
     </Container>
   );
