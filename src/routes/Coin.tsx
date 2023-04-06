@@ -48,11 +48,15 @@ function Coin() {
   useEffect(() => {
     // 캡슐화로 코드 한줄로 정리 - 이 한줄의 solution이 두개의 변수를 받는다.
     (async () => {
-        // 2. 그 response로부터 json을 받는다.
-      const response = await (
-        // 1. 여기에서 response를 받고
-        await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
+      // 2. 그 response로부터 json을 받는다.
+      const infoData = await // 1. 여기에서 response를 받고
+      (await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)).json();
+
+      // 가격정보 데이터 받아오기
+      const priceData = await (
+        await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
       ).json();
+      console.log(priceData);
     })();
   }, []);
 
