@@ -44,6 +44,12 @@ function Coin() {
   // state 안에 있는 name을 가져오기 위한 작업
   const { state } = useLocation() as RouteState;
 
+  // info state
+  const [info, setInfo] = useState({}); // 중괄호는 왜? - object로 넣어줌
+
+  // priceInfo state
+  const [priceInfo, setPriceInfo] = useState({});
+
   // useEffect - 컴포넌트가 생성될 때 한번만 실행됨
   useEffect(() => {
     // 캡슐화로 코드 한줄로 정리 - 이 한줄의 solution이 두개의 변수를 받는다.
@@ -56,7 +62,9 @@ function Coin() {
       const priceData = await (
         await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
       ).json();
-      console.log(priceData);
+
+      // setInfo
+      setInfo(infoData);
     })();
   }, []);
 
