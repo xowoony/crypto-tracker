@@ -35,6 +35,46 @@ interface RouteState {
   };
 }
 
+// ITag 인터페이스
+interface ITag {
+  coin_counter: number;
+  ico_counter: number;
+  id: string;
+  name: string;
+}
+
+// 쉼표 드래그 후 ctrl+D 계속 누르면 쉼표가 하나씩 선택됨
+// 그다음 전체 드래그 후 alt+shift+i 누르면 문자 맨 끝에 커서가 이동해 깜빡임
+interface InfoData {
+  id: string;
+  name: string;
+  symbol: string;
+  rank: number;
+  is_new: boolean;
+  is_active: boolean;
+  type: string;
+  logo: string;
+  tags: []; // type이 object로 뜸. 이 경우 ITag라는 인터페이스를 만듦
+  // []; 라고 작성 후 위에서 인터페이스를 만들어 주어야 함.
+  team: object;
+  description: string;
+  message: string;
+  open_source: boolean;
+  started_at: string;
+  development_status: string;
+  hardware_wallet: boolean;
+  proof_type: string;
+  org_structure: string;
+  hash_algorithm: string;
+  links: object;
+  links_extended: object;
+  whitepaper: object;
+  first_data_at: string;
+  last_data_at: string;
+}
+
+interface PriceData {}
+
 function Coin() {
   // react-router-dom v6 이상의 경우
   // useParams쓰는 순간 타입이 string or undefined로 설정됨.
@@ -45,7 +85,7 @@ function Coin() {
   const { state } = useLocation() as RouteState;
 
   // info state
-  const [info, setInfo] = useState({}); // 중괄호는 왜? - object로 넣어줌
+  const [info, setInfo] = useState({});
 
   // priceInfo state
   const [priceInfo, setPriceInfo] = useState({});
@@ -57,11 +97,13 @@ function Coin() {
       // 2. 그 response로부터 json을 받는다.
       const infoData = await // 1. 여기에서 response를 받고
       (await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)).json();
+      console.log(infoData);
 
       // 가격정보 데이터 받아오기
       const priceData = await (
         await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
       ).json();
+      console.log(priceData);
 
       // setInfo, setPriceInfo
       setInfo(infoData); // infoData로 set
