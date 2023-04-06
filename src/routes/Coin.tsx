@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -43,6 +43,19 @@ function Coin() {
   const [loading, setLoading] = useState(true);
   // state 안에 있는 name을 가져오기 위한 작업
   const { state } = useLocation() as RouteState;
+
+  // useEffect - 컴포넌트가 생성될 때 한번만 실행됨
+  useEffect(() => {
+    // 캡슐화로 코드 한줄로 정리 - 이 한줄의 solution이 두개의 변수를 받는다.
+    (async () => {
+        // 2. 그 response로부터 json을 받는다.
+      const response = await (
+        // 1. 여기에서 response를 받고
+        await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
+      ).json();
+    })();
+  }, []);
+
   return (
     <Container>
       <Header>
