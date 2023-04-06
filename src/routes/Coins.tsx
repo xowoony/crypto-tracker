@@ -95,6 +95,7 @@ function Coins() {
       {/* 코인은 symbol, name 등등이 있다. */}
       {/* coin.name, coin.symbol 로 작성하여 불러올 수 있다 */}
       {/* &rarr 은 화살표이다. */}
+      {/* 로딩중이면 문구 출력 로딩이 끝나면 코인리스트가 뜸. 코인 클릭시 해당 코인 상세 정보 보기로 넘어감. */}
       {loading ? (
         <Loader>로딩중입니다...</Loader>
       ) : (
