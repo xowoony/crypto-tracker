@@ -63,8 +63,9 @@ function Coin() {
         await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
       ).json();
 
-      // setInfo
-      setInfo(infoData);
+      // setInfo, setPriceInfo
+      setInfo(infoData); // infoData로 set
+      setPriceInfo(priceData); // priceData로 set
     })();
   }, []);
 
