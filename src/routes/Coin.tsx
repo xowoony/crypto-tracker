@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
+import Chart from "./Chart";
+import Price from "./Price";
 
 // 여기는 각각의 코인 페이지
 
@@ -216,6 +218,10 @@ function Coin() {
               <span>{priceInfo?.max_supply}</span>
             </DetailItem>
           </Overview>
+          <Routes>
+            <Route path="chart" element={<Chart />} />
+            <Route path="price" element={<Price />} />
+          </Routes>
         </>
       )}
     </Container>
