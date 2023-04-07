@@ -26,6 +26,24 @@ const Title = styled.h1`
   color: ${(props) => props.theme.accentColor};
 `;
 
+const HomeButton = styled.div`
+  width: 5rem;
+  height: 2.3rem;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+ 
+`;
+
+const LogoContainer = styled.div`
+  width: 34.5rem;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
 const Loader = styled.div`
   text-align: center;
   font-size: 1rem;
@@ -68,6 +86,10 @@ const Description = styled.p`
   }
 `;
 
+const Back = styled.span`
+  color: ${(props) => props.theme.textColor};
+`;
+
 // img 컴포넌트
 const Img = styled.img`
   width: 60px;
@@ -85,6 +107,10 @@ const Symbol = styled.span`
   margin-left: 2rem;
   height: 2rem;
   border-radius: 0.7rem;
+`;
+
+const InfoButton = styled(Symbol)`
+  background-color: #0b0f36ec;
 `;
 
 // 인터페이스
@@ -195,11 +221,18 @@ function Coin() {
   return (
     <Container>
       <Header>
-        <Img src={info?.logo}></Img>
-        <Title>
-          {state?.name ? state.name : loading ? "Loading..." : info?.name}
-        </Title>
-        <Symbol>{info?.symbol}</Symbol>
+        <HomeButton>
+          <Link to={`/`}>
+            <Back className="material-symbols-outlined">arrow_back_ios</Back>
+          </Link>
+        </HomeButton>
+        <LogoContainer>
+          <Img src={info?.logo}></Img>
+          <Title>
+            {state?.name ? state.name : loading ? "Loading..." : info?.name}
+          </Title>
+          <Symbol>{info?.symbol}</Symbol>
+        </LogoContainer>
       </Header>
       {loading ? (
         <Loader>로딩 중입니다...</Loader>
@@ -229,8 +262,12 @@ function Coin() {
             <div>상세정보</div>
             {info?.description}
           </Description>
-          <Link to={`/${coinId}/chart`}>차트 정보</Link>
-          <Link to={`/${coinId}/price`}>가격 정보</Link>
+          <InfoButton>
+            <Link to={`/${coinId}/chart`}>차트 정보</Link>
+          </InfoButton>
+          <InfoButton>
+            <Link to={`/${coinId}/price`}>가격 정보</Link>
+          </InfoButton>
         </>
       )}
     </Container>
