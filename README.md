@@ -46,3 +46,5 @@ Apex Charts
 
 <h2>Distribution</h2>
 a project under development..
+<br>
+https://xowoony.github.io/crypto-tracker/
