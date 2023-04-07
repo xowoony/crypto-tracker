@@ -11,7 +11,7 @@ const SwitchTheme = styled.div`
   height: 2.2rem;
   border-radius: 0.5rem;
   color: ${(props) => props.theme.textColor};
-  background-color: black;
+  background-color: ${props => props.theme.boxColor}
 `;
 
 const Container = styled.div`
@@ -31,7 +31,7 @@ const Header = styled.header`
 const CoinsList = styled.ul``;
 
 const Coin = styled.li`
-  background-color: #2b281b;
+  background-color: ${(props) => props.theme.boxColor};
   color: rgb(255 255 255);
   border-radius: 15px;
   margin-bottom: 10px;
@@ -112,7 +112,7 @@ function Coins() {
         <Loader>로딩중입니다...</Loader>
       ) : (
         <CoinsList>
-          <SwitchTheme >테마 변경</SwitchTheme>
+          <SwitchTheme>테마 변경</SwitchTheme>
           {coins.map((coin) => (
             <Coin key={coin.id}>
               <Link to={`/${coin.id}`} state={coin}>
