@@ -221,8 +221,8 @@ function Coin() {
             </DetailItem>
           </Overview>
           <Routes>
-            <Route path="chart" element={<Chart />} />
-            <Route path="price" element={<Price />} />
+          <Route path={`/:coinId/chart`} element={<Chart />} />
+            <Route path={`/:coinId/price`} element={<Price />} />
           </Routes>
         </>
       )}
