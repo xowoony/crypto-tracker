@@ -3,6 +3,7 @@ import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Chart from "./Chart";
 import Price from "./Price";
+import { Link } from "react-router-dom";
 
 // 여기는 각각의 코인 페이지
 
@@ -43,6 +44,7 @@ const Overview = styled.div`
   border-radius: 1rem;
   padding: 1rem;
   font-size: 1.3rem;
+  margin-bottom: 1rem;
 `;
 const DetailItem = styled.div`
   align-items: center;
@@ -54,12 +56,16 @@ const DetailItem = styled.div`
     font-weight: 400;
     text-transform: uppercase;
     margin-bottom: 5px;
-
   }
 `;
 
+// description
 const Description = styled.p`
-  margin: 20px 0px;
+  margin: 40px 0px;
+  div {
+    margin-bottom: 1rem;
+    color: ${(props) => props.theme.accentColor};
+  }
 `;
 
 // img 컴포넌트
@@ -209,7 +215,6 @@ function Coin() {
               <span>{priceInfo?.quotes.USD.market_cap}</span>
             </DetailItem>
           </Overview>
-          <Description>{info?.description}</Description>
           <Overview>
             <DetailItem>
               <span>총 공급량</span>
@@ -220,10 +225,12 @@ function Coin() {
               <span>{priceInfo?.max_supply}</span>
             </DetailItem>
           </Overview>
-          <Routes>
-          <Route path={`/:coinId/chart`} element={<Chart />} />
-            <Route path={`/:coinId/price`} element={<Price />} />
-          </Routes>
+          <Description>
+            <div>상세정보</div>
+            {info?.description}
+          </Description>
+          <Link to={`/${coinId}/chart`}>차트 정보</Link>
+          <Link to={`/${coinId}/price`}>가격 정보</Link>
         </>
       )}
     </Container>

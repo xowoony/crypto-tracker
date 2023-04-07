@@ -2,6 +2,18 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+const SwitchTheme = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 6rem;
+  height: 2.2rem;
+  border-radius: 0.5rem;
+  color: ${(props) => props.theme.textColor};
+  background-color: black;
+`;
+
 const Container = styled.div`
   padding: 0px 20px;
   max-width: 700px;
@@ -19,8 +31,8 @@ const Header = styled.header`
 const CoinsList = styled.ul``;
 
 const Coin = styled.li`
-  background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  background-color: #2b281b;
+  color: rgb(255 255 255);
   border-radius: 15px;
   margin-bottom: 10px;
   font-weight: 600;
@@ -100,6 +112,7 @@ function Coins() {
         <Loader>로딩중입니다...</Loader>
       ) : (
         <CoinsList>
+          <SwitchTheme >테마 변경</SwitchTheme>
           {coins.map((coin) => (
             <Coin key={coin.id}>
               <Link to={`/${coin.id}`} state={coin}>
@@ -108,7 +121,7 @@ function Coins() {
                   src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}
                   alt=""
                 />
-                {coin.name} &rarr;
+                {coin.name}
               </Link>
             </Coin>
           ))}
