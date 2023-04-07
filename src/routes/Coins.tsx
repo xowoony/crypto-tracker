@@ -2,29 +2,33 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const SwitchTheme = styled.div`
+const SwitchTheme = styled.button`
   align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 7rem;
   height: 3rem;
+  cursor: pointer;
+  border: none;
   border-radius: 0.5rem;
-  margin: 1rem;
+  margin: 1rem 3rem 1rem auto;
   color: white;
   background-color: rgb(157 132 25);
-  margin-left: auto;
+  &:hover {
+    background-color: rgb(49 39 22);
+  }
 `;
 
 const Container = styled.div`
   padding: 0px 20px;
-  max-width: 900px;
+  /* max-width: 900px; */
   margin: 0px auto;
   // 화면을 크게 했을 때에도 모바일 화면처럼 가운데에 위치하게 됨
 `;
 
 const Header = styled.header`
-  height: 10rem;
+  height: 15rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,8 +36,14 @@ const Header = styled.header`
 
 const CoinsList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem 2rem;
+  padding: 3rem;
+  @media screen and (max-width: 1090px) {
+    grid-template-columns: 4fr;
+    width: 100%;
+    padding: 0;
+  }
 `;
 
 const Coin = styled.li`
@@ -89,6 +99,8 @@ interface CoinInterface {
 function Coins() {
   const [coins, setCoins] = useState<CoinInterface[]>([]);
   const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState(false);
+  const onClick = () => setTheme((prev) => !prev); // 클릭시 반댓값 리턴
   // useEffect
   // 특정한 시기에만 코드를 실행하기 위해선useEffect를 사용하면 된다.
   // 마지막에 빈배열을 전달해주면 컴포넌트가 시작할 때 한번만 실행된다.
@@ -108,9 +120,9 @@ function Coins() {
   return (
     <Container>
       <Header>
-        <Title>Coins</Title>
+        <Title>Thorn Coin</Title>
       </Header>
-      <SwitchTheme>테마 변경</SwitchTheme>
+      <SwitchTheme onClick={onClick}>테마 변경</SwitchTheme>
       {/* 코인은 symbol, name 등등이 있다. */}
       {/* coin.name, coin.symbol 로 작성하여 불러올 수 있다 */}
       {/* &rarr 은 화살표이다. */}
