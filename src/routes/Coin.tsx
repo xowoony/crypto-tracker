@@ -34,18 +34,18 @@ const Overview = styled.div`
   align-items: center;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
   height: 5rem;
-  background-color: #806800;
+  background-color: rgb(41 37 20);
   border-radius: 1rem;
   padding: 1rem;
   font-size: 1.3rem;
 `;
-const OverviewItem = styled.div`
+const DetailItem = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   span:first-child {
     font-size: 10px;
     font-weight: 400;
@@ -60,9 +60,21 @@ const Description = styled.p`
 
 // img 컴포넌트
 const Img = styled.img`
-  width: 35px;
-  height: 35px;
-  margin-right: 10px;
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+`;
+
+const Symbol = styled.span`
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #726919ed;
+  width: 5rem;
+  margin-left: 2rem;
+  height: 2rem;
+  border-radius: 0.7rem;
 `;
 
 // 인터페이스
@@ -172,51 +184,41 @@ function Coin() {
 
   return (
     <Container>
-    <Header>
-      <Title>
-        {state?.name ? state.name : loading ? "Loading..." : info?.name}
-      </Title>
-    </Header>
-    {loading ? (
-      <Loader>Loading...</Loader>
-    ) : (
-      <>
-        <Overview>
-          <OverviewItem>
-            <span>Rank:</span>
-            <span>{info?.rank}</span>
-          </OverviewItem>
-          <OverviewItem>
-            <span>Symbol:</span>
-            <span>${info?.symbol}</span>
-          </OverviewItem>
-          <OverviewItem>
-            <span>Open Source:</span>
-            <span>{info?.open_source ? "Yes" : "No"}</span>
-          </OverviewItem>
-        </Overview>
-        <Description>{info?.description}</Description>
-        <Overview>
-          <OverviewItem>
-            <span>Total Suply:</span>
-            <span>{priceInfo?.total_supply}</span>
-          </OverviewItem>
-          <OverviewItem>
-            <span>Max Supply:</span>
-            <span>{priceInfo?.max_supply}</span>
-          </OverviewItem>
-        </Overview>
-        <Routes>
-          <Route path={`/${coinId}/price`}>
-            {/* <Price /> */}
-          </Route>
-          <Route path={`/${coinId}/chart`}>
-            {/* <Chart /> */}
-          </Route>
-        </Routes>
-      </>
-    )}
-  </Container>
+      <Header>
+        <Img src={info?.logo}></Img>
+        <Title>
+          {state?.name ? state.name : loading ? "Loading..." : info?.name}
+        </Title>
+        <Symbol>{info?.symbol}</Symbol>
+      </Header>
+      {loading ? (
+        <Loader>Loading...</Loader>
+      ) : (
+        <>
+          <Overview>
+            <DetailItem>
+              <span>순위</span>
+              <span>{info?.rank}</span>
+            </DetailItem>
+            <DetailItem>
+              <span>시가총액</span>
+              <span>{priceInfo?.quotes.USD.market_cap}</span>
+            </DetailItem>
+          </Overview>
+          <Description>{info?.description}</Description>
+          <Overview>
+            <DetailItem>
+              <span>총 공급량</span>
+              <span>{priceInfo?.total_supply}</span>
+            </DetailItem>
+            <DetailItem>
+              <span>최대 공급량</span>
+              <span>{priceInfo?.max_supply}</span>
+            </DetailItem>
+          </Overview>
+        </>
+      )}
+    </Container>
   );
 }
 
