@@ -9,13 +9,14 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
   padding: 0px 20px;
-  max-width: 700px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 0px auto;
   // 화면을 크게 했을 때에도 모바일 화면처럼 가운데에 위치하게 됨
 `;
 
 const Header = styled.header`
-  height: 10rem;
+  height: 15rem;
+
   display: flex;
   justify-content: center;
   align-items: center;

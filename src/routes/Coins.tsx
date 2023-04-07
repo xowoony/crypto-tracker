@@ -7,17 +7,19 @@ const SwitchTheme = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 6rem;
-  height: 2.2rem;
+  width: 7rem;
+  height: 3rem;
   border-radius: 0.5rem;
-  color: ${(props) => props.theme.textColor};
-  background-color: ${props => props.theme.boxColor}
+  margin: 1rem;
+  color: white;
+  background-color: rgb(157 132 25);
+  margin-left: auto;
 `;
 
 const Container = styled.div`
   padding: 0px 20px;
-  max-width: 700px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 0px auto;
   // 화면을 크게 했을 때에도 모바일 화면처럼 가운데에 위치하게 됨
 `;
 
@@ -28,7 +30,11 @@ const Header = styled.header`
   align-items: center;
 `;
 
-const CoinsList = styled.ul``;
+const CoinsList = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem 2rem;
+`;
 
 const Coin = styled.li`
   background-color: ${(props) => props.theme.boxColor};
@@ -104,6 +110,7 @@ function Coins() {
       <Header>
         <Title>Coins</Title>
       </Header>
+      <SwitchTheme>테마 변경</SwitchTheme>
       {/* 코인은 symbol, name 등등이 있다. */}
       {/* coin.name, coin.symbol 로 작성하여 불러올 수 있다 */}
       {/* &rarr 은 화살표이다. */}
@@ -112,7 +119,6 @@ function Coins() {
         <Loader>로딩중입니다...</Loader>
       ) : (
         <CoinsList>
-          <SwitchTheme>테마 변경</SwitchTheme>
           {coins.map((coin) => (
             <Coin key={coin.id}>
               <Link to={`/${coin.id}`} state={coin}>
