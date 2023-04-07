@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 // 여기는 각각의 코인 페이지
@@ -29,6 +29,43 @@ const Loader = styled.div`
   display: block;
 `;
 
+// detail
+const Overview = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  height: 5rem;
+  background-color: #806800;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 1.3rem;
+`;
+const OverviewItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  span:first-child {
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+`;
+
+const Description = styled.p`
+  margin: 20px 0px;
+`;
+
+// img 컴포넌트
+const Img = styled.img`
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+`;
+
+// 인터페이스
 interface RouteState {
   state: {
     name: string;
@@ -107,7 +144,7 @@ function Coin() {
   // 따라서 const {coinId} = useParams(); 로만 적어줘도 상관 ㄴ
   const [loading, setLoading] = useState(true);
   const { coinId } = useParams(); // coinId를 받아서 parameter로 사용
-  const { state } = useLocation() as RouteState;// state 안에 있는 name을 가져오기 위한 작업
+  const { state } = useLocation() as RouteState; // state 안에 있는 name을 가져오기 위한 작업
   // info state
   // useState<InfoData>(); 를 작성해줌으로써 타입스크립트는 info가 InfoData라고 인식
   const [info, setInfo] = useState<InfoData>();
@@ -129,20 +166,57 @@ function Coin() {
       // setInfo, setPriceInfo
       setInfo(infoData); // infoData로 set
       setPriceInfo(priceData); // priceData로 set
+      setLoading(false); // 로딩 후 false
     })();
-  }, []);
+  }, [coinId]); // hooks는 최선의 성능을 위해서는
 
   return (
     <Container>
-      <Header>
-        {/* /coinID 로 바로 접속하면 시크릿모드에서 에러가 나는데 */}
-        {/* 그것은 home을 거쳐서 오지 않았기 때문에 state가 생성되지 않기 때문이다 */}
-        {/* ?를 붙여서 state가 존재하면 name을 가져오고, 아니라면 로딩중이라는 문구가 표시되게 함*/}
-        <Title>{state?.name || "로딩 중입니다..."}</Title>
-      </Header>
-      {/*  priceInfo?.quotes.USD.price */}
-      {loading ? <Loader>로딩중입니다...</Loader> : null}
-    </Container>
+    <Header>
+      <Title>
+        {state?.name ? state.name : loading ? "Loading..." : info?.name}
+      </Title>
+    </Header>
+    {loading ? (
+      <Loader>Loading...</Loader>
+    ) : (
+      <>
+        <Overview>
+          <OverviewItem>
+            <span>Rank:</span>
+            <span>{info?.rank}</span>
+          </OverviewItem>
+          <OverviewItem>
+            <span>Symbol:</span>
+            <span>${info?.symbol}</span>
+          </OverviewItem>
+          <OverviewItem>
+            <span>Open Source:</span>
+            <span>{info?.open_source ? "Yes" : "No"}</span>
+          </OverviewItem>
+        </Overview>
+        <Description>{info?.description}</Description>
+        <Overview>
+          <OverviewItem>
+            <span>Total Suply:</span>
+            <span>{priceInfo?.total_supply}</span>
+          </OverviewItem>
+          <OverviewItem>
+            <span>Max Supply:</span>
+            <span>{priceInfo?.max_supply}</span>
+          </OverviewItem>
+        </Overview>
+        <Routes>
+          <Route path={`/${coinId}/price`}>
+            {/* <Price /> */}
+          </Route>
+          <Route path={`/${coinId}/chart`}>
+            {/* <Chart /> */}
+          </Route>
+        </Routes>
+      </>
+    )}
+  </Container>
   );
 }
 
