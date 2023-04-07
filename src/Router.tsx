@@ -14,9 +14,9 @@ function Router() {
         {/* home - 코인들 */}
         <Route path="/" element={<Coins />} />
         {/* Coin ID - 해당 코인정보 */}
-        <Route path="/:coinId*" element={<Coin />} />
-        <Route path="chart" element={<Chart />} />
-        <Route path="price" element={<Price />} />
+        <Route path="/:coinId/*" element={<Coin />} />
+        {/* <Route path="chart" element={<Chart />} />
+        <Route path="price" element={<Price />} /> */}
       </Routes>
     </BrowserRouter>
   );
