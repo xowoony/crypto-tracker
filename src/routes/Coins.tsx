@@ -58,7 +58,7 @@ const Title = styled.h1`
 
 const Loader = styled.div`
   text-align: center;
-  font-size: 38px;
+  font-size: 1rem;
   display: block;
 `;
 

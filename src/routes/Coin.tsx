@@ -28,7 +28,7 @@ const Title = styled.h1`
 
 const Loader = styled.div`
   text-align: center;
-  font-size: 38px;
+  font-size: 1rem;
   display: block;
 `;
 
@@ -202,7 +202,7 @@ function Coin() {
         <Symbol>{info?.symbol}</Symbol>
       </Header>
       {loading ? (
-        <Loader>Loading...</Loader>
+        <Loader>로딩 중입니다...</Loader>
       ) : (
         <>
           <Overview>
