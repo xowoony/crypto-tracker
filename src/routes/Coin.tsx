@@ -48,11 +48,13 @@ const DetailItem = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  padding: 3rem;
   span:first-child {
     font-size: 10px;
     font-weight: 400;
     text-transform: uppercase;
     margin-bottom: 5px;
+
   }
 `;
 
