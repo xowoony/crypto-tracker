@@ -285,12 +285,23 @@ function Coin() {
             <div>상세정보</div>
             {info?.description}
           </Description>
-          {/* 중첩 라우팅 */}
+          {/* price, chart 탭 - 중첩라우팅을 하고 있기 때문에 onClick 이벤트 필요x url바꿔주기만 하면됨 */}
+          <InfoContainer>
+            <InfoButton>
+              <Link to={`/${coinId}/chart`}>차트정보</Link>
+            </InfoButton>
+            <InfoButton>
+              <Link to={`/${coinId}/price`}>가격정보</Link>
+            </InfoButton>
+          </InfoContainer>
+
+          {/* 중첩 라우팅*/}
           <Routes>
-            <Route path="price" element={<Price />} />
             <Route path="chart" element={<Chart />} />
+            <Route path="price" element={<Price />} />
           </Routes>
 
+          {/* 링크 방식 */}
           {/* <InfoContainer>
             <InfoButton>
               <Link to={`/${coinId}/chart`}>차트 정보 보러가기</Link>
