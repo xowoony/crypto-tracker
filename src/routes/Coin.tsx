@@ -51,11 +51,45 @@ const LogoContainer = styled.div`
   justify-content: center;
 `;
 
-const InfoContainer = styled.div`
+const Symbol = styled.span`
   align-items: center;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+  background-color: #726919ed;
+  color: white;
+  width: 5rem;
+  margin-left: 2rem;
+  height: 2rem;
+  border-radius: 0.7rem;
+`;
+
+// Tab
+const InfoContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 25px 0px;
+  gap: 10px;
+`;
+
+const InfoButton = styled(Symbol)<{ isActive: boolean }>`
+  background-color: rgb(1 12 3 / 54%);
+  color: white;
+  width: 22rem;
+  height: 3rem;
+  margin-bottom: 3rem;
+  color: ${props => props.isActive ? props.theme.accentColor : props.theme.textColor}; // Active라면 accentColor를 theme에 적용
+  a {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  &:hover {
+    background-color: #00000090;
+  }
 `;
 
 const Loader = styled.div`
@@ -117,32 +151,9 @@ const Img = styled.img`
   margin-right: 20px;
 `;
 
-const Symbol = styled.span`
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background-color: #726919ed;
-  color: white;
-  width: 5rem;
-  margin-left: 2rem;
-  height: 2rem;
-  border-radius: 0.7rem;
-`;
 
-const InfoButton = styled(Symbol)`
-  background-color: rgb(1 12 3 / 54%);
-  color: white;
-  width: 22rem;
-  height: 3rem;
-  margin-bottom: 3rem;
-  a {
-    display: block;
-  }
-  &:hover {
-    background-color: #00000090;
-  }
-`;
+
+
 
 // 인터페이스
 interface RouteState {
@@ -233,6 +244,7 @@ function Coin() {
   const priceMatch = useMatch("/:coinId/price");
   const chartMatch = useMatch("/:coinId/chart");
   console.log(priceMatch);
+  console.log(chartMatch);
 
   // useEffect - 컴포넌트가 생성될 때 한번만 실행됨
   useEffect(() => {
@@ -303,10 +315,10 @@ function Coin() {
           </Description>
           {/* price, chart 탭 - 중첩라우팅을 하고 있기 때문에 onClick 이벤트 필요x url바꿔주기만 하면됨 */}
           <InfoContainer>
-            <InfoButton>
+            <InfoButton isActive={chartMatch !== null}>
               <Link to={`/${coinId}/chart`}>차트정보</Link>
             </InfoButton>
-            <InfoButton >
+            <InfoButton isActive={priceMatch !== null}>
               <Link to={`/${coinId}/price`}>가격정보</Link>
             </InfoButton>
           </InfoContainer>
