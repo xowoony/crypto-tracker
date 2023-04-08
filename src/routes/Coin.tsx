@@ -236,7 +236,7 @@ function Coin() {
       setPriceInfo(priceData); // priceData로 set
       setLoading(false); // 로딩 후 false
     })();
-  }, [coinId]); // hooks는 최선의 성능을 위해서는
+  }, [coinId]); // hooks는 최선의 성능을 위해서는 적어주는 것이 좋다. coinId가 변하면 코드가 다시 실행된다.
 
   return (
     <Container>
@@ -249,6 +249,9 @@ function Coin() {
         <LogoContainer>
           <Img src={info?.logo}></Img>
           <Title>
+            {/* loading ? "Loading..." : info?.name => 이부분은 홈페이지로부터 온게 아닌 경우 실행됨 */}
+            {/* 뒤의 info 는 API로부터 받아오는 info Data 이다.*/}
+            {/* home을 거쳐서 오지 않을 경우 state가 생성되지 않아서 앞부분은 실행 되지 못할 것임 */}
             {state?.name ? state.name : loading ? "Loading..." : info?.name}
           </Title>
           <Symbol>{info?.symbol}</Symbol>
