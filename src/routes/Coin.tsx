@@ -31,6 +31,7 @@ const Header = styled.header`
 
 const Title = styled.h1`
   font-size: 48px;
+  font-weight: 600;
   color: ${(props) => props.theme.accentColor};
 `;
 
@@ -73,12 +74,15 @@ const InfoContainer = styled.div`
 `;
 
 const InfoButton = styled(Symbol)<{ isActive: boolean }>`
-  background-color: rgb(1 12 3 / 54%);
+  background-color: ${(props) =>
+    props.isActive
+      ? "rgba(114, 105, 25, 0.93);"
+      : "#00000090;"}; // Active라면 accentColor를 theme에 적용;
+  /* background-color: rgb(1 12 3 / 54%); */
   color: white;
   width: 22rem;
   height: 3rem;
   margin-bottom: 3rem;
-  color: ${props => props.isActive ? props.theme.accentColor : props.theme.textColor}; // Active라면 accentColor를 theme에 적용
   a {
     width: 100%;
     height: 100%;
@@ -88,7 +92,7 @@ const InfoButton = styled(Symbol)<{ isActive: boolean }>`
     justify-content: center;
   }
   &:hover {
-    background-color: #00000090;
+    background-color: rgba(114, 105, 25, 0.93);
   }
 `;
 
@@ -150,10 +154,6 @@ const Img = styled.img`
   height: 60px;
   margin-right: 20px;
 `;
-
-
-
-
 
 // 인터페이스
 interface RouteState {
