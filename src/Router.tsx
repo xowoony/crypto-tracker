@@ -13,12 +13,13 @@ function Router() {
       <Routes>
         {/* home - 코인들 */}
         <Route path={`/`} element={<Coins />} />
-        {/* Coin ID - 해당 코인정보 */}
-        <Route path={`/:coinId`} element={<Coin />} />
+        {/* 중첩 라우팅 방식 */}
+        <Route path="/:coinId/*" element={<Coin/>} />
+        {/* 링크 방식 */}
         {/* <Route path="chart" element={<Chart />} />
         <Route path="price" element={<Price />} /> */}
-        <Route path={`/:coinId/chart`} element={<Chart />} />
-        <Route path={`/:coinId/price`} element={<Price />} />
+        {/* <Route path={`/:coinId/chart`} element={<Chart />} />
+        <Route path={`/:coinId/price`} element={<Price />} /> */}
       </Routes>
     </BrowserRouter>
   );

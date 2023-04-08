@@ -285,14 +285,20 @@ function Coin() {
             <div>상세정보</div>
             {info?.description}
           </Description>
-          <InfoContainer>
+          {/* 중첩 라우팅 */}
+          <Routes>
+            <Route path="price" element={<Price />} />
+            <Route path="chart" element={<Chart />} />
+          </Routes>
+
+          {/* <InfoContainer>
             <InfoButton>
               <Link to={`/${coinId}/chart`}>차트 정보 보러가기</Link>
             </InfoButton>
             <InfoButton>
               <Link to={`/${coinId}/price`}>가격 정보 보러가기</Link>
             </InfoButton>
-          </InfoContainer>
+          </InfoContainer> */}
         </>
       )}
     </Container>
