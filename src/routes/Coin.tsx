@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { PathMatch, Route, Routes, useLocation, useMatch, useParams } from "react-router-dom";
+import {
+  PathMatch,
+  Route,
+  Routes,
+  useLocation,
+  useMatch,
+  useParams,
+} from "react-router-dom";
 import styled from "styled-components";
 import Chart from "./Chart";
 import Price from "./Price";
@@ -137,8 +144,6 @@ const InfoButton = styled(Symbol)`
   }
 `;
 
-
-
 // 인터페이스
 interface RouteState {
   state: {
@@ -225,9 +230,9 @@ function Coin() {
   // priceInfo state
   const [priceInfo, setPriceInfo] = useState<PriceData>();
   // useRouteMatch hook 사용하기 - 우리가 적어준 URL에 있는지 확인시켜줌
-  const chartMatch: PathMatch< "coinId" > | null = useMatch("/:coinId/chart");
-
-
+  const priceMatch = useMatch("/:coinId/price");
+  const chartMatch = useMatch("/:coinId/chart");
+  console.log(priceMatch);
 
   // useEffect - 컴포넌트가 생성될 때 한번만 실행됨
   useEffect(() => {
@@ -301,7 +306,7 @@ function Coin() {
             <InfoButton>
               <Link to={`/${coinId}/chart`}>차트정보</Link>
             </InfoButton>
-            <InfoButton>
+            <InfoButton >
               <Link to={`/${coinId}/price`}>가격정보</Link>
             </InfoButton>
           </InfoContainer>
@@ -321,4 +326,3 @@ export default Coin;
 function useRouteMatch() {
   throw new Error("Function not implemented.");
 }
-
