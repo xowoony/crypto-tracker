@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Routes, useLocation, useParams } from "react-router-dom";
+import { PathMatch, Route, Routes, useLocation, useMatch, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Chart from "./Chart";
 import Price from "./Price";
@@ -93,7 +93,7 @@ const Description = styled.p`
   flex-direction: column;
   justify-content: center;
   font-weight: 600;
-  div {
+  b {
     margin-bottom: 1rem;
     color: ${(props) => props.theme.accentColor};
   }
@@ -128,10 +128,16 @@ const InfoButton = styled(Symbol)`
   color: white;
   width: 22rem;
   height: 3rem;
+  margin-bottom: 3rem;
+  a {
+    display: block;
+  }
   &:hover {
     background-color: #00000090;
   }
 `;
+
+
 
 // 인터페이스
 interface RouteState {
@@ -218,6 +224,11 @@ function Coin() {
   const [info, setInfo] = useState<InfoData>();
   // priceInfo state
   const [priceInfo, setPriceInfo] = useState<PriceData>();
+  // useRouteMatch hook 사용하기 - 우리가 적어준 URL에 있는지 확인시켜줌
+  const chartMatch: PathMatch< "coinId" > | null = useMatch("/:coinId/chart");
+
+
+
   // useEffect - 컴포넌트가 생성될 때 한번만 실행됨
   useEffect(() => {
     // 캡슐화로 코드 한줄로 정리 - 이 한줄의 solution이 두개의 변수를 받는다.
@@ -282,7 +293,7 @@ function Coin() {
             </DetailItem>
           </Overview>
           <Description>
-            <div>상세정보</div>
+            <b>상세정보</b>
             {info?.description}
           </Description>
           {/* price, chart 탭 - 중첩라우팅을 하고 있기 때문에 onClick 이벤트 필요x url바꿔주기만 하면됨 */}
@@ -300,16 +311,6 @@ function Coin() {
             <Route path="chart" element={<Chart />} />
             <Route path="price" element={<Price />} />
           </Routes>
-
-          {/* 링크 방식 */}
-          {/* <InfoContainer>
-            <InfoButton>
-              <Link to={`/${coinId}/chart`}>차트 정보 보러가기</Link>
-            </InfoButton>
-            <InfoButton>
-              <Link to={`/${coinId}/price`}>가격 정보 보러가기</Link>
-            </InfoButton>
-          </InfoContainer> */}
         </>
       )}
     </Container>
@@ -317,3 +318,7 @@ function Coin() {
 }
 
 export default Coin;
+function useRouteMatch() {
+  throw new Error("Function not implemented.");
+}
+
