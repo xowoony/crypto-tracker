@@ -33,7 +33,7 @@ const Header = styled.header`
   justify-content: flex-start;
   align-items: center;
   background-color: #1f1902;
-    height: 5rem;
+  height: 5rem;
 `;
 
 const CoinsList = styled.ul`
@@ -44,7 +44,7 @@ const CoinsList = styled.ul`
   @media screen and (max-width: 1090px) {
     grid-template-columns: 4fr;
     width: 100%;
-    padding: 0;
+
   }
 `;
 

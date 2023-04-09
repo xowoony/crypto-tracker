@@ -23,7 +23,6 @@ const Container = styled.div`
 
 const Header = styled.header`
   height: 15rem;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +59,7 @@ const Symbol = styled.span`
   background-color: #726919ed;
   color: white;
   width: 5rem;
-  margin-left: 2rem;
+  /* margin-left: 2rem; */
   height: 2rem;
   border-radius: 0.7rem;
 `;
@@ -70,7 +69,11 @@ const InfoContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 25px 0px;
-  gap: 10px;
+  gap: 128px;
+
+  @media screen {
+    gap: 30px;
+  }
 `;
 
 const InfoButton = styled(Symbol)<{ isActive: boolean }>`
@@ -93,6 +96,11 @@ const InfoButton = styled(Symbol)<{ isActive: boolean }>`
   }
   &:hover {
     background-color: rgba(114, 105, 25, 0.93);
+  }
+  @media screen and (max-width: 1090px) {
+    /* grid-template-columns: 1fr; */
+    width: 100%;
+
   }
 `;
 
@@ -294,7 +302,6 @@ function Coin() {
               <span>순위</span>
               <span>{info?.rank}</span>
             </DetailItem>
-
           </Overview>
           <Overview>
             <DetailItem>
