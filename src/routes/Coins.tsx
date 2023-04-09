@@ -53,6 +53,12 @@ const Coin = styled.li`
   margin-bottom: 10px;
   font-weight: 600;
   a {
+    height: 7rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
     align-items: center;
     display: flex;
     padding: 20px;
