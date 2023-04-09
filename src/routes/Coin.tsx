@@ -33,8 +33,8 @@ const Title = styled.h1`
   font-weight: 600;
   margin-right: 2rem;
   color: ${(props) => props.theme.accentColor};
-  @media screen {
-   font-size:30px; 
+  @media screen and (max-width: 1090px) {
+    font-size: 30px;
   }
 `;
 
@@ -75,9 +75,9 @@ const InfoContainer = styled.div`
   gap: 128px;
 
   align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 
   @media screen {
     gap: 30px;
@@ -111,6 +111,13 @@ const InfoButton = styled(Symbol)<{ isActive: boolean }>`
   }
 `;
 
+const MaxSupply = styled.span`
+  /* font-size: 1.3rem; */
+  @media screen and (max-width: 1090px) {
+    font-size: 1rem;
+  }
+`;
+
 const Loader = styled.div`
   text-align: center;
   font-size: 1rem;
@@ -136,12 +143,15 @@ const DetailItem = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 3rem;
+  padding: 3.5rem;
   span:first-child {
     font-size: 10px;
     font-weight: 400;
-    text-transform: uppercase;
     margin-bottom: 5px;
+  }
+
+  @media screen and (max-width: 1090px) {
+    padding: 0.5rem;
   }
 `;
 
@@ -313,11 +323,11 @@ function Coin() {
           <Overview>
             <DetailItem>
               <span>총 공급량</span>
-              <span>{priceInfo?.total_supply}</span>
+              <MaxSupply>{priceInfo?.total_supply}</MaxSupply>
             </DetailItem>
             <DetailItem>
               <span>최대 공급량</span>
-              <span>{priceInfo?.max_supply}</span>
+              <MaxSupply>{priceInfo?.max_supply}</MaxSupply>
             </DetailItem>
           </Overview>
           <Description>

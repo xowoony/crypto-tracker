@@ -34,6 +34,12 @@ const Header = styled.header`
   align-items: center;
   background-color: #1f1902;
   height: 5rem;
+  @media screen and (max-width: 1090px) {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 `;
 
 const CoinsList = styled.ul`
@@ -44,7 +50,7 @@ const CoinsList = styled.ul`
   @media screen and (max-width: 1090px) {
     grid-template-columns: 4fr;
     width: 100%;
-
+    padding: 2rem;
   }
 `;
 
@@ -80,6 +86,9 @@ const Title = styled.h1`
   font-weight: 600;
   margin-left: 5rem;
   color: ${(props) => props.theme.accentColor};
+  @media screen and (max-width: 1090px) {
+    margin-left: 0rem;
+  }
 `;
 
 const Loader = styled.div`
