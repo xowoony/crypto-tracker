@@ -21,7 +21,7 @@ const SwitchTheme = styled.button`
 `;
 
 const Container = styled.div`
-  padding: 0px 20px;
+  /* padding: 0px 20px; */
   /* max-width: 900px; */
   margin: 0px auto;
   // 화면을 크게 했을 때에도 모바일 화면처럼 가운데에 위치하게 됨
@@ -30,8 +30,10 @@ const Container = styled.div`
 const Header = styled.header`
   height: 15rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  background-color: #1f1902;
+    height: 5rem;
 `;
 
 const CoinsList = styled.ul`
@@ -74,8 +76,9 @@ const Coin = styled.li`
 `;
 
 const Title = styled.h1`
-  font-size: 48px;
+  font-size: 30px;
   font-weight: 600;
+  margin-left: 5rem;
   color: ${(props) => props.theme.accentColor};
 `;
 
