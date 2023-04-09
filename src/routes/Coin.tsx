@@ -33,6 +33,9 @@ const Title = styled.h1`
   font-weight: 600;
   margin-right: 2rem;
   color: ${(props) => props.theme.accentColor};
+  @media screen {
+   font-size:30px; 
+  }
 `;
 
 const HomeButton = styled.div`
@@ -70,6 +73,11 @@ const InfoContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   margin: 25px 0px;
   gap: 128px;
+
+  align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
   @media screen {
     gap: 30px;
