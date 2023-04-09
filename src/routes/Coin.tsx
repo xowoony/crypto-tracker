@@ -294,10 +294,7 @@ function Coin() {
               <span>순위</span>
               <span>{info?.rank}</span>
             </DetailItem>
-            <DetailItem>
-              <span>시가총액</span>
-              <span>{priceInfo?.quotes.USD.market_cap}</span>
-            </DetailItem>
+
           </Overview>
           <Overview>
             <DetailItem>

@@ -18,12 +18,12 @@ const PriceContainer = styled.div`
 `;
 
 const PriceDetail = styled.div`
-font-size: 0.8rem;
+  font-size: 0.8rem;
   padding: 0.5rem;
-  div{
+  div {
     margin-bottom: 0.2rem;
     font-size: 1rem;
-    color:#c0ba87;
+    color: #c0ba87;
   }
 `;
 
@@ -64,8 +64,8 @@ interface PriceData {
     USD: {
       ath_date: string;
       ath_price: number;
-      market_cap: number;
-      market_cap_change_24h: number;
+      market_cap: number; // 시가 총액
+      market_cap_change_24h: number; // 시가총액 변동률
       percent_change_1h: number;
       percent_change_1y: number;
       percent_change_6h: number;
@@ -76,9 +76,9 @@ interface PriceData {
       percent_change_30d: number;
       percent_change_30m: number;
       percent_from_price_ath: number;
-      price: number;
-      volume_24h: number;
-      volume_24h_change_24h: number;
+      price: number; // 현재 시세
+      volume_24h: number; // 지난 24시간 거래량
+      volume_24h_change_24h: number; // 지난 24시간 거래 변동률
     };
   };
 }
@@ -105,76 +105,36 @@ function Price() {
   return (
     <PriceContainer>
       <PriceDetail>
-        <div>ath_date</div>
-        {priceInfo?.quotes.USD.ath_date}
+        <div>현재시세</div>
+        $ {priceInfo?.quotes.USD.price}
       </PriceDetail>
-
       <PriceDetail>
-        <div>ath_price</div>
-        {priceInfo?.quotes.USD.ath_price}
+        <div>거래량 (24h)</div>
+        {priceInfo?.quotes.USD.volume_24h}
       </PriceDetail>
-
       <PriceDetail>
-        <div>market_cap</div>
+        <div>거래량 변동 % (24h)</div>
+        {priceInfo?.quotes.USD.volume_24h_change_24h}
+      </PriceDetail>
+      <PriceDetail>
+        <div>시가총액</div>
         {priceInfo?.quotes.USD.market_cap}
       </PriceDetail>
 
       <PriceDetail>
-        <div>market_cap_change_24h</div>
+        <div>시가총액 변동 % (24h)</div>
         {priceInfo?.quotes.USD.market_cap_change_24h}
       </PriceDetail>
       <PriceDetail>
-        <div>percent_change_12h</div>
+        <div>변동% (12h)</div>
         {priceInfo?.quotes.USD.percent_change_12h}
       </PriceDetail>
       <PriceDetail>
-        <div>percent_change_15m</div>
-        {priceInfo?.quotes.USD.percent_change_15m}
-      </PriceDetail>
-      <PriceDetail>
-        <div>percent_change_1h</div>
-        {priceInfo?.quotes.USD.percent_change_1h}
-      </PriceDetail>
-      <PriceDetail>
-        <div>percent_change_1y</div>
-        {priceInfo?.quotes.USD.percent_change_1y}
-      </PriceDetail>
-      <PriceDetail>
-        <div>percent_change_24h</div>
-        {priceInfo?.quotes.USD.percent_change_24h}
-      </PriceDetail>
-      <PriceDetail>
-        <div>percent_change_30d</div>
-        {priceInfo?.quotes.USD.percent_change_30d}
-      </PriceDetail>
-      <PriceDetail>
-        <div>percent_change_30m</div>
-        {priceInfo?.quotes.USD.percent_change_30m}
-      </PriceDetail>
-      <PriceDetail>
-        <div>percent_change_6h</div>
-        {priceInfo?.quotes.USD.percent_change_6h}
-      </PriceDetail>
-      <PriceDetail>
-        <div>percent_change_7d</div>
+        <div>변동% (7d)</div>
         {priceInfo?.quotes.USD.percent_change_7d}
       </PriceDetail>
-      <PriceDetail>
-        <div>percent_from_price_ath</div>
-        {priceInfo?.quotes.USD.percent_from_price_ath}
-      </PriceDetail>
-      <PriceDetail>
-        <div>price</div>
-        {priceInfo?.quotes.USD.price}
-      </PriceDetail>
-      <PriceDetail>
-        <div>volume_24h</div>
-        {priceInfo?.quotes.USD.volume_24h}
-      </PriceDetail>
-      <PriceDetail>
-        <div>volume_24h_change_24h</div>
-        {priceInfo?.quotes.USD.volume_24h_change_24h}
-      </PriceDetail>
+
+
     </PriceContainer>
   );
 }
