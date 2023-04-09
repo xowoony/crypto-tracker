@@ -59,8 +59,7 @@ const Symbol = styled.span`
   justify-content: center;
   background-color: #726919ed;
   color: white;
-  width: 5rem;
-  /* margin-left: 2rem; */
+  padding: 1rem;
   height: 2rem;
   border-radius: 0.7rem;
 `;
@@ -101,7 +100,6 @@ const InfoButton = styled(Symbol)<{ isActive: boolean }>`
   @media screen and (max-width: 1090px) {
     /* grid-template-columns: 1fr; */
     width: 100%;
-
   }
 `;
 
