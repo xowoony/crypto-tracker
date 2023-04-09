@@ -7,17 +7,25 @@ const PriceContainer = styled.div`
   display: grid;
   flex-direction: row;
   justify-content: center;
-  grid-template-columns: repeat(8, 1fr);
-  background-color: ${(props) => props.theme.accentColor};
+  grid-template-columns: repeat(2, 1fr);
+  background-color: rgb(195 178 93 / 17%);
   margin-bottom: 10rem;
-  color: black;
+  color: ${(props) => props.theme.textColor};
   font-size: 1.1rem;
   font-weight: 600;
   border-radius: 1rem;
   padding: 2rem;
 `;
 
-const PriceDetail = styled.div``;
+const PriceDetail = styled.div`
+font-size: 0.8rem;
+  padding: 0.5rem;
+  div{
+    margin-bottom: 0.2rem;
+    font-size: 1rem;
+    color:#c0ba87;
+  }
+`;
 
 interface InfoData {
   id: string;
@@ -96,23 +104,77 @@ function Price() {
 
   return (
     <PriceContainer>
-      <PriceDetail>{priceInfo?.quotes.USD.ath_date}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.ath_price}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.market_cap}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.market_cap_change_24h}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.percent_change_12h}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.percent_change_15m}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.percent_change_1h}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.percent_change_1y}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.percent_change_24h}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.percent_change_30d}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.percent_change_30m}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.percent_change_6h}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.percent_change_7d}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.percent_from_price_ath}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.price}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.volume_24h}</PriceDetail>
-      <PriceDetail>{priceInfo?.quotes.USD.volume_24h_change_24h}</PriceDetail>
+      <PriceDetail>
+        <div>ath_date</div>
+        {priceInfo?.quotes.USD.ath_date}
+      </PriceDetail>
+
+      <PriceDetail>
+        <div>ath_price</div>
+        {priceInfo?.quotes.USD.ath_price}
+      </PriceDetail>
+
+      <PriceDetail>
+        <div>market_cap</div>
+        {priceInfo?.quotes.USD.market_cap}
+      </PriceDetail>
+
+      <PriceDetail>
+        <div>market_cap_change_24h</div>
+        {priceInfo?.quotes.USD.market_cap_change_24h}
+      </PriceDetail>
+      <PriceDetail>
+        <div>percent_change_12h</div>
+        {priceInfo?.quotes.USD.percent_change_12h}
+      </PriceDetail>
+      <PriceDetail>
+        <div>percent_change_15m</div>
+        {priceInfo?.quotes.USD.percent_change_15m}
+      </PriceDetail>
+      <PriceDetail>
+        <div>percent_change_1h</div>
+        {priceInfo?.quotes.USD.percent_change_1h}
+      </PriceDetail>
+      <PriceDetail>
+        <div>percent_change_1y</div>
+        {priceInfo?.quotes.USD.percent_change_1y}
+      </PriceDetail>
+      <PriceDetail>
+        <div>percent_change_24h</div>
+        {priceInfo?.quotes.USD.percent_change_24h}
+      </PriceDetail>
+      <PriceDetail>
+        <div>percent_change_30d</div>
+        {priceInfo?.quotes.USD.percent_change_30d}
+      </PriceDetail>
+      <PriceDetail>
+        <div>percent_change_30m</div>
+        {priceInfo?.quotes.USD.percent_change_30m}
+      </PriceDetail>
+      <PriceDetail>
+        <div>percent_change_6h</div>
+        {priceInfo?.quotes.USD.percent_change_6h}
+      </PriceDetail>
+      <PriceDetail>
+        <div>percent_change_7d</div>
+        {priceInfo?.quotes.USD.percent_change_7d}
+      </PriceDetail>
+      <PriceDetail>
+        <div>percent_from_price_ath</div>
+        {priceInfo?.quotes.USD.percent_from_price_ath}
+      </PriceDetail>
+      <PriceDetail>
+        <div>price</div>
+        {priceInfo?.quotes.USD.price}
+      </PriceDetail>
+      <PriceDetail>
+        <div>volume_24h</div>
+        {priceInfo?.quotes.USD.volume_24h}
+      </PriceDetail>
+      <PriceDetail>
+        <div>volume_24h_change_24h</div>
+        {priceInfo?.quotes.USD.volume_24h_change_24h}
+      </PriceDetail>
     </PriceContainer>
   );
 }
