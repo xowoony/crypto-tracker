@@ -119,7 +119,6 @@ interface ICoin {
 
 function Coins() {
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
-
   /*   const [coins, setCoins] = useState<CoinInterface[]>([]);
   const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState(false);
@@ -136,19 +135,12 @@ function Coins() {
       setLoading(false);
     })();
   }, []); */
-
-  // console.log(coins);
-
   return (
     <Container>
       <Header>
         <Title>Thorn Coin</Title>
       </Header>
       <SwitchTheme>테마 변경</SwitchTheme>
-      {/* 코인은 symbol, name 등등이 있다. */}
-      {/* coin.name, coin.symbol 로 작성하여 불러올 수 있다 */}
-      {/* &rarr 은 화살표이다. */}
-      {/* 로딩중이면 문구 출력 로딩이 끝나면 코인리스트가 뜸. 코인 클릭시 해당 코인 상세 정보 보기로 넘어감. */}
       {isLoading ? (
         <Loader>로딩중입니다...</Loader>
       ) : (
@@ -156,7 +148,6 @@ function Coins() {
           {data?.slice(0, 100).map((coin) => (
             <Coin key={coin.id}>
               <Link to={`/${coin.id}`} state={coin}>
-                {/* 코인의 로고 img태그에 src로 {}안 ``안에 작성한다. */}
                 <Img
                   src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}
                   alt=""
