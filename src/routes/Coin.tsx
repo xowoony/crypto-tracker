@@ -11,9 +11,10 @@ import styled from "styled-components";
 import Chart from "./Chart";
 import Price from "./Price";
 import { Link } from "react-router-dom";
+import { fetchCoinInfo, fetchCoinTickers } from "../api";
+import { useQuery } from "react-query";
 
 // 여기는 각각의 코인 페이지
-
 const Container = styled.div`
   padding: 0px 20px;
   max-width: 900px;
@@ -254,43 +255,44 @@ interface PriceData {
 }
 
 function Coin() {
-  // react-router-dom v6 이상의 경우
-  // useParams쓰는 순간 타입이 string or undefined로 설정됨.
-  // 따라서 const {coinId} = useParams(); 로만 적어줘도 상관 ㄴ
-  const [loading, setLoading] = useState(true);
-  const { coinId } = useParams(); // coinId를 받아서 parameter로 사용
-  const { state } = useLocation() as RouteState; // state 안에 있는 name을 가져오기 위한 작업
-  // info state
-  // useState<InfoData>(); 를 작성해줌으로써 타입스크립트는 info가 InfoData라고 인식
-  const [info, setInfo] = useState<InfoData>();
-  // priceInfo state
-  const [priceInfo, setPriceInfo] = useState<PriceData>();
-  // useRouteMatch hook 사용하기 - 우리가 적어준 URL에 있는지 확인시켜줌
+  const { coinId } = useParams();
+  const { state } = useLocation() as RouteState;
   const priceMatch = useMatch("/:coinId/price");
   const chartMatch = useMatch("/:coinId/chart");
-  console.log(priceMatch);
-  console.log(chartMatch);
+  // coinId 뒤에 !
+  // 확장 할당 어션셜로 값이 무조건 할당되어있다고 컴파일러에게 전달해
+  // 값이 없어도 변수를 사용할 수 있게 한다
+  // isLoading또한 이름이 공통이기 때문에 isLoading: infoLoading 이런식으로 이름을 바꾸는 작업을 하여 적어주도록 한다.
+  // 리액트쿼리는 키를 배열로 감싸서 표현한다. 키가 coinId로 공통이 되면 안되기 때문에 아래와 같이 써준다.
+  const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
+    ["info", coinId],
+    () => fetchCoinInfo(coinId!)
+  );
+  const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
+    ["tickers", coinId],
+    () => fetchCoinTickers(coinId!)
+  );
 
-  // useEffect - 컴포넌트가 생성될 때 한번만 실행됨
+  /*  const [loading, setLoading] = useState(true);
+  const [info, setInfo] = useState<InfoData>();
+  const [priceInfo, setPriceInfo] = useState<PriceData>();
+
   useEffect(() => {
-    // 캡슐화로 코드 한줄로 정리 - 이 한줄의 solution이 두개의 변수를 받는다.
     (async () => {
-      // 2. 그 response로부터 json을 받는다.
-      const infoData = await // 1. 여기에서 response를 받고
+      const infoData = await 
       (await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)).json();
-
-      // 가격정보 데이터 받아오기
       const priceData = await (
         await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
       ).json();
-
-      // setInfo, setPriceInfo
-      setInfo(infoData); // infoData로 set
-      setPriceInfo(priceData); // priceData로 set
-      setLoading(false); // 로딩 후 false
+      setInfo(infoData);
+      setPriceInfo(priceData); 
+      setLoading(false);
     })();
-  }, [coinId]); // hooks는 최선의 성능을 위해서는 적어주는 것이 좋다. coinId가 변하면 코드가 다시 실행된다.
+  }, [coinId]);
+ */
 
+  // 새로운 변수 만듦
+  const loading = infoLoading || tickersLoading;
   return (
     <Container>
       <Header>
@@ -300,14 +302,11 @@ function Coin() {
           </Link>
         </HomeButton>
         <LogoContainer>
-          <Img src={info?.logo}></Img>
+          <Img src={infoData?.logo}></Img>
           <Title>
-            {/* loading ? "Loading..." : info?.name => 이부분은 홈페이지로부터 온게 아닌 경우 실행됨 */}
-            {/* 뒤의 info 는 API로부터 받아오는 info Data 이다.*/}
-            {/* home을 거쳐서 오지 않을 경우 state가 생성되지 않아서 앞부분은 실행 되지 못할 것임 */}
-            {state?.name ? state.name : loading ? "Loading..." : info?.name}
+            {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
           </Title>
-          <Symbol>{info?.symbol}</Symbol>
+          <Symbol>{infoData?.symbol}</Symbol>
         </LogoContainer>
       </Header>
       {loading ? (
@@ -317,24 +316,23 @@ function Coin() {
           <Overview>
             <DetailItem>
               <span>순위</span>
-              <span>{info?.rank}</span>
+              <span>{infoData?.rank}</span>
             </DetailItem>
           </Overview>
           <Overview>
             <DetailItem>
               <span>총 공급량</span>
-              <MaxSupply>{priceInfo?.total_supply}</MaxSupply>
+              <MaxSupply>{tickersData?.total_supply}</MaxSupply>
             </DetailItem>
             <DetailItem>
               <span>최대 공급량</span>
-              <MaxSupply>{priceInfo?.max_supply}</MaxSupply>
+              <MaxSupply>{tickersData?.max_supply}</MaxSupply>
             </DetailItem>
           </Overview>
           <Description>
             <b>상세정보</b>
-            {info?.description}
+            {infoData?.description}
           </Description>
-          {/* price, chart 탭 - 중첩라우팅을 하고 있기 때문에 onClick 이벤트 필요x url바꿔주기만 하면됨 */}
           <InfoContainer>
             <InfoButton isActive={chartMatch !== null}>
               <Link to={`/${coinId}/chart`}>차트정보</Link>
@@ -356,6 +354,3 @@ function Coin() {
 }
 
 export default Coin;
-function useRouteMatch() {
-  throw new Error("Function not implemented.");
-}

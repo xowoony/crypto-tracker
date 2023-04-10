@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
+import { ReactQueryDevtools } from "react-query/devtools";
+
 
 const SwitchTheme = styled.button`
   align-items: center;
@@ -119,22 +120,7 @@ interface ICoin {
 
 function Coins() {
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
-  /*   const [coins, setCoins] = useState<CoinInterface[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [theme, setTheme] = useState(false);
-  const onClick = () => setTheme((prev) => !prev); // 클릭시 반댓값 리턴
-  // useEffect
-  // 특정한 시기에만 코드를 실행하기 위해선useEffect를 사용하면 된다.
-  // 마지막에 빈배열을 전달해주면 컴포넌트가 시작할 때 한번만 실행된다.
-  useEffect(() => {
-    // URL을 복사하여 fetch에 붙여준다.
-    //위에는 async, 아래는 API의 response를 받기 위해 await을 사용
-    (async () => {
-      
-      setCoins(json.slice(0, 100)); // 처음부터 100번째까지 잘라서 반환
-      setLoading(false);
-    })();
-  }, []); */
+
   return (
     <Container>
       <Header>

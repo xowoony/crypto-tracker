@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import Router from "./Router";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 // GlobalStyle을 렌더링하게 되면 전체 body의 color는 red가 될 것이다.
 // 기본값 제거를 위한 스타일 셋
@@ -76,8 +77,9 @@ function App() {
     <>
       <GlobalStyle />
       <Router />
+      <ReactQueryDevtools initialIsOpen={true} />
     </>
   );
 }
- 
+
 export default App;
