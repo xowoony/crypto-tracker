@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { fetchCoins } from "../api";
 
 const SwitchTheme = styled.button`
   align-items: center;
@@ -105,7 +107,7 @@ const Img = styled.img`
 `;
 
 // interface (API로부터 받아오는 정보도 적어주어야 한다.)
-interface CoinInterface {
+interface ICoin {
   id: string;
   name: string;
   symbol: string;
@@ -116,7 +118,9 @@ interface CoinInterface {
 }
 
 function Coins() {
-  const [coins, setCoins] = useState<CoinInterface[]>([]);
+  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
+
+  /*   const [coins, setCoins] = useState<CoinInterface[]>([]);
   const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState(false);
   const onClick = () => setTheme((prev) => !prev); // 클릭시 반댓값 리턴
@@ -127,12 +131,11 @@ function Coins() {
     // URL을 복사하여 fetch에 붙여준다.
     //위에는 async, 아래는 API의 response를 받기 위해 await을 사용
     (async () => {
-      const response = await fetch("https://api.coinpaprika.com/v1/coins");
-      const json = await response.json(); // 그런다음 response로부터 json을 받아옴
+      
       setCoins(json.slice(0, 100)); // 처음부터 100번째까지 잘라서 반환
       setLoading(false);
     })();
-  }, []);
+  }, []); */
 
   // console.log(coins);
 
@@ -141,16 +144,16 @@ function Coins() {
       <Header>
         <Title>Thorn Coin</Title>
       </Header>
-      <SwitchTheme onClick={onClick}>테마 변경</SwitchTheme>
+      <SwitchTheme>테마 변경</SwitchTheme>
       {/* 코인은 symbol, name 등등이 있다. */}
       {/* coin.name, coin.symbol 로 작성하여 불러올 수 있다 */}
       {/* &rarr 은 화살표이다. */}
       {/* 로딩중이면 문구 출력 로딩이 끝나면 코인리스트가 뜸. 코인 클릭시 해당 코인 상세 정보 보기로 넘어감. */}
-      {loading ? (
+      {isLoading ? (
         <Loader>로딩중입니다...</Loader>
       ) : (
         <CoinsList>
-          {coins.map((coin) => (
+          {data?.slice(0, 100).map((coin) => (
             <Coin key={coin.id}>
               <Link to={`/${coin.id}`} state={coin}>
                 {/* 코인의 로고 img태그에 src로 {}안 ``안에 작성한다. */}
