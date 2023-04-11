@@ -94,6 +94,7 @@ const InfoButton = styled(Symbol)<{ isActive: boolean }>`
   width: 22rem;
   height: 3rem;
   margin-bottom: 3rem;
+  padding: 0;
   a {
     width: 100%;
     height: 100%;
@@ -101,6 +102,7 @@ const InfoButton = styled(Symbol)<{ isActive: boolean }>`
     display: flex;
     flex-direction: row;
     justify-content: center;
+
   }
   &:hover {
     background-color: rgba(114, 105, 25, 0.93);
