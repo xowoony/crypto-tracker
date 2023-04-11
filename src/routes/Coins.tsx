@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
-import { ReactQueryDevtools } from "react-query/devtools";
+
 
 
 const SwitchTheme = styled.button`
@@ -119,6 +119,7 @@ interface ICoin {
 }
 
 function Coins() {
+  // useQuery를 통해 Coins 를 fetch
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
 
   return (
