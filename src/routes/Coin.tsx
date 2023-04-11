@@ -12,6 +12,7 @@ import Price from "./Price";
 import { Link } from "react-router-dom";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { useQuery } from "react-query";
+import { useMemo, useRef, useState } from "react";
 
 // 여기는 각각의 코인 페이지
 const Container = styled.div`
@@ -102,7 +103,6 @@ const InfoButton = styled(Symbol)<{ isActive: boolean }>`
     display: flex;
     flex-direction: row;
     justify-content: center;
-
   }
   &:hover {
     background-color: rgba(114, 105, 25, 0.93);
@@ -291,6 +291,10 @@ function Coin() {
     })();
   }, [coinId]);
  */
+
+  // 더보기 & 닫기
+  const [isShowMore, setIsShowMore] = useState<boolean>(false); // 더보기 열고 닫는 스위치
+  const textLimit = useRef<number>(170); // 글자수 제한 선언
 
   // 새로운 변수 만듦
   const loading = infoLoading || tickersLoading;

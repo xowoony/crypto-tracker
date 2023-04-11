@@ -38,15 +38,19 @@ function Chart({ coinId }: ChartProps) {
           type="line"
           series={[
             {
-              data: [100, 50, 30, 40, 50],
               name: "sales",
+              data: data?.map((price) => parseFloat(price.close)) ?? [],
             },
           ]}
           options={{
+            theme: {
+              mode: "dark",
+            },
             chart: {
               height: 50,
               width: 50,
             },
+
           }}
         />
       )}
