@@ -48,7 +48,7 @@ function Chart({ coinId }: ChartProps) {
       {isLoading ? (
         "로딩 중입니다..."
       ) : (
-        <ApexChart style={{width:"40rem"}}
+        <ApexChart style={{width:"40rem", padding:"2rem"}}
           type="line"
           series={[
             {
