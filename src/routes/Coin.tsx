@@ -40,6 +40,7 @@ const Title = styled.h1`
   color: ${(props) => props.theme.accentColor};
   @media screen and (max-width: 1090px) {
     font-size: 30px;
+    margin-left: 0px;
   }
 `;
 
