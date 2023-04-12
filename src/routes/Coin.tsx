@@ -66,6 +66,7 @@ const Title2 = styled.h1`
 `;
 const SubTitle = styled.span`
   margin-left: 5rem;
+  color: #cdcdcd;
 `;
 
 const Header = styled.header`

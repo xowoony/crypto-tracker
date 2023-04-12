@@ -108,6 +108,7 @@ const Img = styled.img`
 
 const SubTitle = styled.span`
   margin-left: 5rem;
+  color: #cdcdcd;
 `;
 
 // interface (API로부터 받아오는 정보도 적어주어야 한다.)
