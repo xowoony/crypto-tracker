@@ -76,7 +76,7 @@ function Chart({ coinId }: ChartProps) {
             colors: ["orange"],
             tooltip: {
               y: {
-                formatter: (value) => `₩${value.toFixed(2)}`,
+                formatter: (value) => `$${value.toFixed(2)}`,
               },
             },
           }}
