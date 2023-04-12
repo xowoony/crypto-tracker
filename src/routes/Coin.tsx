@@ -326,8 +326,8 @@ function Coin() {
               <MaxSupply>{tickersData?.total_supply}</MaxSupply>
             </DetailItem>
             <DetailItem>
-              <span>최대 공급량</span>
-              <MaxSupply>{tickersData?.max_supply}</MaxSupply>
+            <span>가격</span>
+              <MaxSupply>${tickersData?.quotes.USD.price.toFixed(3)}</MaxSupply>
             </DetailItem>
           </Overview>
           <Description>

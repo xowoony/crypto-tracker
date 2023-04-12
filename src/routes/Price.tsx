@@ -105,36 +105,32 @@ function Price() {
   return (
     <PriceContainer>
       <PriceDetail>
-        <div>현재시세</div>
-        $ {priceInfo?.quotes.USD.price}
+        <div>가격(달러)</div>$ {priceInfo?.quotes.USD.price.toFixed(2)}
       </PriceDetail>
       <PriceDetail>
         <div>거래량 (24h)</div>
-        {priceInfo?.quotes.USD.volume_24h}
+        {priceInfo?.quotes.USD.volume_24h.toFixed(2)}
       </PriceDetail>
       <PriceDetail>
         <div>거래량 변동 % (24h)</div>
-        {priceInfo?.quotes.USD.volume_24h_change_24h}
+        {priceInfo?.quotes.USD.volume_24h_change_24h}%
       </PriceDetail>
       <PriceDetail>
         <div>시가총액</div>
         {priceInfo?.quotes.USD.market_cap}
       </PriceDetail>
-
       <PriceDetail>
         <div>시가총액 변동 % (24h)</div>
-        {priceInfo?.quotes.USD.market_cap_change_24h}
+        {priceInfo?.quotes.USD.market_cap_change_24h}%
       </PriceDetail>
       <PriceDetail>
         <div>변동% (12h)</div>
-        {priceInfo?.quotes.USD.percent_change_12h}
+        {priceInfo?.quotes.USD.percent_change_12h}%
       </PriceDetail>
       <PriceDetail>
         <div>변동% (7d)</div>
-        {priceInfo?.quotes.USD.percent_change_7d}
+        {priceInfo?.quotes.USD.percent_change_7d}%
       </PriceDetail>
-
-
     </PriceContainer>
   );
 }

@@ -49,7 +49,7 @@ function Chart({ coinId }: ChartProps) {
             chart: {
               height: 300,
               width: 500,
-              toolbar:{show:false},
+              toolbar: { show: false },
               background: "transparent",
             },
             grid: { show: false },
@@ -61,9 +61,23 @@ function Chart({ coinId }: ChartProps) {
               show: false,
             },
             xaxis: {
-              axisBorder:{show:false},
+              axisBorder: { show: false },
               axisTicks: { show: false },
-              labels:{show:false},
+              labels: { show: false },
+              // time_close가 초단위이므로 변환작업
+              categories: data?.map((price) =>
+                new Date(price.time_close * 1000).toUTCString()
+              ),
+            },
+            fill: {
+              type: "gradient",
+              gradient: { gradientToColors: ["blue"], stops: [0, 100] },
+            },
+            colors: ["orange"],
+            tooltip: {
+              y: {
+                formatter: (value) => `₩${value.toFixed(2)}`,
+              },
             },
           }}
         />
