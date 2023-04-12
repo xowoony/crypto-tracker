@@ -21,12 +21,13 @@ interface ChartProps {
 }
 
 const ChartGraph = styled.div`
-align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  
-`
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+
 
 function Chart({ coinId }: ChartProps) {
   // 여러개를 받아와야하므로 배열로!
@@ -60,7 +61,7 @@ function Chart({ coinId }: ChartProps) {
               mode: "dark",
             },
             chart: {
-              height: 300,
+              height: 500,
               width: 500,
               toolbar: { show: false },
               background: "transparent",

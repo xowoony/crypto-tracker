@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const PriceContainer = styled.div`
+  width: 100%;
+  max-width: 700px;
   align-items: center;
   display: grid;
   flex-direction: row;
@@ -15,6 +17,13 @@ const PriceContainer = styled.div`
   font-weight: 600;
   border-radius: 1rem;
   padding: 2rem;
+`;
+const TotalContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1.5rem;
 `;
 
 const PriceDetail = styled.div`
@@ -103,35 +112,37 @@ function Price() {
   }, [coinId]);
 
   return (
-    <PriceContainer>
-      <PriceDetail>
-        <div>가격(달러)</div>$ {priceInfo?.quotes.USD.price.toFixed(2)}
-      </PriceDetail>
-      <PriceDetail>
-        <div>거래량 (24h)</div>
-        {priceInfo?.quotes.USD.volume_24h.toFixed(2)}
-      </PriceDetail>
-      <PriceDetail>
-        <div>거래량 변동 % (24h)</div>
-        {priceInfo?.quotes.USD.volume_24h_change_24h}%
-      </PriceDetail>
-      <PriceDetail>
-        <div>시가총액</div>
-        {priceInfo?.quotes.USD.market_cap}
-      </PriceDetail>
-      <PriceDetail>
-        <div>시가총액 변동 % (24h)</div>
-        {priceInfo?.quotes.USD.market_cap_change_24h}%
-      </PriceDetail>
-      <PriceDetail>
-        <div>변동% (12h)</div>
-        {priceInfo?.quotes.USD.percent_change_12h}%
-      </PriceDetail>
-      <PriceDetail>
-        <div>변동% (7d)</div>
-        {priceInfo?.quotes.USD.percent_change_7d}%
-      </PriceDetail>
-    </PriceContainer>
+    <TotalContainer>
+      <PriceContainer>
+        <PriceDetail>
+          <div>가격(달러)</div>$ {priceInfo?.quotes.USD.price.toFixed(2)}
+        </PriceDetail>
+        <PriceDetail>
+          <div>거래량 (24h)</div>
+          {priceInfo?.quotes.USD.volume_24h.toFixed(2)}
+        </PriceDetail>
+        <PriceDetail>
+          <div>거래량 변동 % (24h)</div>
+          {priceInfo?.quotes.USD.volume_24h_change_24h}%
+        </PriceDetail>
+        <PriceDetail>
+          <div>시가총액</div>
+          {priceInfo?.quotes.USD.market_cap}
+        </PriceDetail>
+        <PriceDetail>
+          <div>시가총액 변동 % (24h)</div>
+          {priceInfo?.quotes.USD.market_cap_change_24h}%
+        </PriceDetail>
+        <PriceDetail>
+          <div>변동% (12h)</div>
+          {priceInfo?.quotes.USD.percent_change_12h}%
+        </PriceDetail>
+        <PriceDetail>
+          <div>변동% (7d)</div>
+          {priceInfo?.quotes.USD.percent_change_7d}%
+        </PriceDetail>
+      </PriceContainer>
+    </TotalContainer>
   );
 }
 
