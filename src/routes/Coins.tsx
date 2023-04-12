@@ -4,8 +4,6 @@ import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
 import { useState } from "react";
 
-
-
 const SwitchTheme = styled.button`
   align-items: center;
   display: flex;
@@ -108,6 +106,10 @@ const Img = styled.img`
   margin-right: 10px;
 `;
 
+const SubTitle = styled.span`
+  margin-left: 5rem;
+`;
+
 // interface (API로부터 받아오는 정보도 적어주어야 한다.)
 interface ICoin {
   id: string;
@@ -119,16 +121,17 @@ interface ICoin {
   type: string;
 }
 
-
-
 function Coins() {
   // useQuery를 통해 Coins 를 fetch
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
- 
+
   return (
     <Container>
       <Header>
-        <Title>Thorn Coin</Title>
+        <Link to={"/"}>
+          <Title>Thorn Coin</Title>
+        </Link>
+        <SubTitle>Grab Your Own Coin!</SubTitle>
       </Header>
       <SwitchTheme>테마 변경</SwitchTheme>
       {isLoading ? (

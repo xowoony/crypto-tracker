@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { fetchCoinHistory } from "../api";
 import ApexChart from "react-apexcharts";
+import styled from "styled-components";
 
 // data 타입 정의
 interface IHistorical {
@@ -19,6 +20,14 @@ interface ChartProps {
   coinId: string;
 }
 
+const ChartGraph = styled.div`
+align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  
+`
+
 function Chart({ coinId }: ChartProps) {
   // 여러개를 받아와야하므로 배열로!
   const { isLoading, data } = useQuery<IHistorical[]>(
@@ -34,7 +43,7 @@ function Chart({ coinId }: ChartProps) {
   // 그다음 차트 데이터를 보내주어야 하는데 데이터는 series라는 prop에 다 들어있기 때문에
   // series 를 작성해준다.
   return (
-    <div>
+    <ChartGraph>
       {isLoading ? (
         "로딩 중입니다..."
       ) : (
@@ -86,7 +95,7 @@ function Chart({ coinId }: ChartProps) {
           }}
         />
       )}
-    </div>
+    </ChartGraph>
   );
 }
 

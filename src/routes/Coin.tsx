@@ -16,31 +16,77 @@ import { useMemo, useRef, useState } from "react";
 
 // 여기는 각각의 코인 페이지
 const Container = styled.div`
-  padding: 0px 20px;
+  /* padding: 0px 20px;
   max-width: 900px;
-  margin: 0px auto;
+  margin: 0px auto; */
   // 화면을 크게 했을 때에도 모바일 화면처럼 가운데에 위치하게 됨
 `;
 
-const Header = styled.header`
+const Header2 = styled.header`
   height: 15rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 1090px) {
+    padding: 2rem;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 48px;
+  font-size: 30px;
   font-weight: 600;
-  margin-right: 2rem;
+  margin-left: 5rem;
+  color: rgb(225, 177, 44);
   color: ${(props) => props.theme.accentColor};
   @media screen and (max-width: 1090px) {
     font-size: 30px;
   }
 `;
 
+// 하단 전체 묶음
+const Total = styled.div`
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem;
+`;
+
+const Title2 = styled.h1`
+  font-size: 30px;
+  font-weight: 600;
+  margin-right: 2rem;
+  color: rgb(225, 177, 44);
+  color: ${(props) => props.theme.accentColor};
+  @media screen and (max-width: 1090px) {
+    font-size: 30px;
+  }
+`;
+const SubTitle = styled.span`
+  margin-left: 5rem;
+`;
+
+const Header = styled.header`
+  height: 15rem;
+  display: flex;
+  padding: none;
+  max-width: none;
+  margin: none;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #1f1902;
+  height: 5rem;
+  @media screen and (max-width: 1090px) {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+`;
+
 const HomeButton = styled.div`
-  width: 5rem;
+  width: 1rem;
   height: 2.3rem;
   align-items: center;
   display: flex;
@@ -74,7 +120,8 @@ const InfoContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   margin: 25px 0px;
   gap: 128px;
-
+  max-width: 700px;
+  width: 100%;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -83,6 +130,14 @@ const InfoContainer = styled.div`
   @media screen {
     gap: 30px;
   }
+`;
+
+const SizingContainer = styled.div`
+  width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 700px;
 `;
 
 const InfoButton = styled(Symbol)<{ isActive: boolean }>`
@@ -134,6 +189,7 @@ const Overview = styled.div`
   justify-content: center;
   width: 100%;
   height: 5rem;
+  max-width: 700px;
   background-color: ${(props) => props.theme.boxColor};
   color: ${(props) => props.theme.textColor};
   border-radius: 1rem;
@@ -180,6 +236,11 @@ const Img = styled.img`
   width: 60px;
   height: 60px;
   margin-right: 20px;
+`;
+
+const Box = styled.span`
+  width: 100%;
+  max-width: 900px;
 `;
 
 // 인터페이스
@@ -269,7 +330,7 @@ function Coin() {
     ["info", coinId],
     () => fetchCoinInfo(coinId!)
   );
-  
+
   // refetchInterval : 이 쿼리를 작성해준 시간마다 refetch 해준다.
   const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
     ["tickers", coinId],
@@ -302,6 +363,12 @@ function Coin() {
   return (
     <Container>
       <Header>
+        <Link to={"/"}>
+          <Title>Thorn Coin</Title>
+        </Link>
+        <SubTitle>Grab Your Own Coin!</SubTitle>
+      </Header>
+      <Header2>
         <HomeButton>
           <Link to={`/`}>
             <Back className="material-symbols-outlined">arrow_back_ios</Back>
@@ -309,44 +376,51 @@ function Coin() {
         </HomeButton>
         <LogoContainer>
           <Img src={infoData?.logo}></Img>
-          <Title>
+          <Title2>
             {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
-          </Title>
+          </Title2>
           <Symbol>{infoData?.symbol}</Symbol>
         </LogoContainer>
-      </Header>
+      </Header2>
       {loading ? (
         <Loader>로딩 중입니다...</Loader>
       ) : (
         <>
-          <Overview>
-            <DetailItem>
-              <span>순위</span>
-              <span>{infoData?.rank}</span>
-            </DetailItem>
-          </Overview>
-          <Overview>
-            <DetailItem>
-              <span>총 공급량</span>
-              <MaxSupply>{tickersData?.total_supply}</MaxSupply>
-            </DetailItem>
-            <DetailItem>
-              <span>가격</span>
-              <MaxSupply>${tickersData?.quotes.USD.price.toFixed(2)}</MaxSupply>
-            </DetailItem>
-          </Overview>
-          <Description>
-            <b>상세정보</b>
-            {infoData?.description}
-          </Description>
-          <InfoContainer>
-            <InfoButton isActive={chartMatch !== null}>
-              <Link to={`/${coinId}/chart`}>차트정보</Link>
-            </InfoButton>
-            <InfoButton isActive={priceMatch !== null}>
-              <Link to={`/${coinId}/price`}>가격정보</Link>
-            </InfoButton>
-          </InfoContainer>
+          <Total>
+            <SizingContainer>
+            <Overview>
+              <DetailItem>
+                <Box>순위</Box>
+                <span>{infoData?.rank}</span>
+              </DetailItem>
+            </Overview>
+            <Overview>
+              <DetailItem>
+                <span>총 공급량</span>
+                <MaxSupply>{tickersData?.total_supply}</MaxSupply>
+              </DetailItem>
+              <DetailItem>
+                <span>가격</span>
+                <MaxSupply>
+                  ${tickersData?.quotes.USD.price.toFixed(2)}
+                </MaxSupply>
+              </DetailItem>
+            </Overview>
+            <Description>
+              <b>상세정보</b>
+              {infoData?.description}
+            </Description>
+            <InfoContainer>
+              <InfoButton isActive={chartMatch !== null}>
+                <Link to={`/${coinId}/chart`}>차트정보</Link>
+              </InfoButton>
+              <InfoButton isActive={priceMatch !== null}>
+                <Link to={`/${coinId}/price`}>가격정보</Link>
+              </InfoButton>
+            </InfoContainer>
+            </SizingContainer>
+
+          </Total>
 
           {/* 중첩 라우팅*/}
           <Routes>
