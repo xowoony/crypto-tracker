@@ -292,10 +292,6 @@ function Coin() {
   }, [coinId]);
  */
 
-  // 더보기 & 닫기
-  const [isShowMore, setIsShowMore] = useState<boolean>(false); // 더보기 열고 닫는 스위치
-  const textLimit = useRef<number>(170); // 글자수 제한 선언
-
   // 새로운 변수 만듦
   const loading = infoLoading || tickersLoading;
   return (

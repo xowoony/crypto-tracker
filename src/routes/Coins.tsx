@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
+import { useState } from "react";
 
 
 
@@ -118,10 +119,12 @@ interface ICoin {
   type: string;
 }
 
+
+
 function Coins() {
   // useQuery를 통해 Coins 를 fetch
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
-
+ 
   return (
     <Container>
       <Header>

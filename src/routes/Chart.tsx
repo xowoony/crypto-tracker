@@ -38,7 +38,7 @@ function Chart({ coinId }: ChartProps) {
           type="line"
           series={[
             {
-              name: "sales",
+              name: "Price",
               data: data?.map((price) => parseFloat(price.close)) ?? [],
             },
           ]}
@@ -47,10 +47,24 @@ function Chart({ coinId }: ChartProps) {
               mode: "dark",
             },
             chart: {
-              height: 50,
-              width: 50,
+              height: 300,
+              width: 500,
+              toolbar:{show:false},
+              background: "transparent",
             },
-
+            grid: { show: false },
+            stroke: {
+              curve: "smooth",
+              width: 4,
+            },
+            yaxis: {
+              show: false,
+            },
+            xaxis: {
+              axisBorder:{show:false},
+              axisTicks: { show: false },
+              labels:{show:false},
+            },
           }}
         />
       )}
