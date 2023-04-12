@@ -21,8 +21,12 @@ interface ChartProps {
 
 function Chart({ coinId }: ChartProps) {
   // 여러개를 받아와야하므로 배열로!
-  const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () =>
-    fetchCoinHistory(coinId)
+  const { isLoading, data } = useQuery<IHistorical[]>(
+    ["ohlcv", coinId],
+    () => fetchCoinHistory(coinId),
+    {
+      refetchInterval: 10000,
+    }
   );
   // apex chart는 type에서 만들 수 있는 모든 차트 종류를 자동완성으로 보여줌
   // <ApexChart /> 안에 작성해주면 된다. type="자동완성으로 뜸 - 선택"

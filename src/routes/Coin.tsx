@@ -269,9 +269,14 @@ function Coin() {
     ["info", coinId],
     () => fetchCoinInfo(coinId!)
   );
+  
+  // refetchInterval : 이 쿼리를 작성해준 시간마다 refetch 해준다.
   const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
     ["tickers", coinId],
-    () => fetchCoinTickers(coinId!)
+    () => fetchCoinTickers(coinId!),
+    {
+      refetchInterval: 5000, // 5000ms = 5초
+    }
   );
 
   /*  const [loading, setLoading] = useState(true);
@@ -326,8 +331,8 @@ function Coin() {
               <MaxSupply>{tickersData?.total_supply}</MaxSupply>
             </DetailItem>
             <DetailItem>
-            <span>가격</span>
-              <MaxSupply>${tickersData?.quotes.USD.price.toFixed(3)}</MaxSupply>
+              <span>가격</span>
+              <MaxSupply>${tickersData?.quotes.USD.price.toFixed(2)}</MaxSupply>
             </DetailItem>
           </Overview>
           <Description>
