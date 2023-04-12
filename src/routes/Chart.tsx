@@ -48,7 +48,7 @@ function Chart({ coinId }: ChartProps) {
       {isLoading ? (
         "로딩 중입니다..."
       ) : (
-        <ApexChart
+        <ApexChart style={{width:"40rem"}}
           type="line"
           series={[
             {
@@ -61,8 +61,8 @@ function Chart({ coinId }: ChartProps) {
               mode: "dark",
             },
             chart: {
-              height: 500,
-              width: 500,
+              height: '500px',
+              width: '100%',
               toolbar: { show: false },
               background: "transparent",
             },
