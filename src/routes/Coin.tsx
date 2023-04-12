@@ -41,6 +41,7 @@ const Title = styled.h1`
   @media screen and (max-width: 1090px) {
     font-size: 30px;
     margin-left: 0px;
+    margin-bottom: 0.2rem;
   }
 `;
 
@@ -67,6 +68,9 @@ const Title2 = styled.h1`
 const SubTitle = styled.span`
   margin-left: 5rem;
   color: #cdcdcd;
+  @media screen and (max-width: 1090px) {
+   margin-left:0px;
+  }
 `;
 
 const Header = styled.header`
@@ -82,7 +86,7 @@ const Header = styled.header`
   @media screen and (max-width: 1090px) {
     align-items: center;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
   }
 `;

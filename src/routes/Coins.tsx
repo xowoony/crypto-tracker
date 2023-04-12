@@ -39,7 +39,7 @@ const Header = styled.header`
   @media screen and (max-width: 1090px) {
     align-items: center;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
   }
 `;
@@ -87,9 +87,11 @@ const Title = styled.h1`
   font-size: 30px;
   font-weight: 600;
   margin-left: 5rem;
+
   color: ${(props) => props.theme.accentColor};
   @media screen and (max-width: 1090px) {
     margin-left: 0rem;
+    margin-bottom: 0.2rem;
   }
 `;
 
@@ -109,6 +111,9 @@ const Img = styled.img`
 const SubTitle = styled.span`
   margin-left: 5rem;
   color: #cdcdcd;
+  @media screen and (max-width: 1090px) {
+   margin-left:0px;
+  }
 `;
 
 // interface (API로부터 받아오는 정보도 적어주어야 한다.)
