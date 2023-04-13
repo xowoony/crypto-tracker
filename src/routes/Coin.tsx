@@ -101,6 +101,9 @@ const HomeButton = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  @media screen and (max-width: 1090px) {
+    margin-right: 0.5rem;
+  }
 `;
 
 const LogoContainer = styled.div`
@@ -247,7 +250,7 @@ const Img = styled.img`
   margin-right: 20px;
   @media screen and (max-width: 1090px) {
     width: 40px;
-  height: 40px;
+    height: 40px;
   }
 `;
 
