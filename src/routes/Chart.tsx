@@ -27,8 +27,6 @@ const ChartGraph = styled.div`
   justify-content: center;
 `;
 
-
-
 function Chart({ coinId }: ChartProps) {
   // 여러개를 받아와야하므로 배열로!
   const { isLoading, data } = useQuery<IHistorical[]>(
@@ -48,7 +46,13 @@ function Chart({ coinId }: ChartProps) {
       {isLoading ? (
         "로딩 중입니다..."
       ) : (
-        <ApexChart style={{width:"40rem", height:"20rem" ,padding:"2rem", marginBottom:"4rem"}}
+        <ApexChart
+          style={{
+            width: "40rem",
+            height: "20rem",
+            padding: "2rem",
+            marginBottom: "4rem",
+          }}
           type="line"
           series={[
             {
@@ -61,8 +65,8 @@ function Chart({ coinId }: ChartProps) {
               mode: "dark",
             },
             chart: {
-              height: '500px',
-              width: '100%',
+              height: "500px",
+              width: "100%",
               toolbar: { show: false },
               background: "transparent",
             },

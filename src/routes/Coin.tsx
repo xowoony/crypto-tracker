@@ -12,7 +12,7 @@ import Price from "./Price";
 import { Link } from "react-router-dom";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { useQuery } from "react-query";
-import { useMemo, useRef, useState } from "react";
+import { Helmet } from "react-helmet";
 
 // 여기는 각각의 코인 페이지
 const Container = styled.div`
@@ -69,7 +69,7 @@ const SubTitle = styled.span`
   margin-left: 5rem;
   color: #cdcdcd;
   @media screen and (max-width: 1090px) {
-   margin-left:0px;
+    margin-left: 0px;
   }
 `;
 
@@ -140,10 +140,10 @@ const InfoContainer = styled.div`
 
 const SizingContainer = styled.div`
   width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 700px;
 `;
 
 const InfoButton = styled(Symbol)<{ isActive: boolean }>`
@@ -368,6 +368,11 @@ function Coin() {
   const loading = infoLoading || tickersLoading;
   return (
     <Container>
+      <Helmet>
+        <title>
+          {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+        </title>
+      </Helmet>
       <Header>
         <Link to={"/"}>
           <Title>Thorn Coin</Title>
@@ -394,38 +399,37 @@ function Coin() {
         <>
           <Total>
             <SizingContainer>
-            <Overview>
-              <DetailItem>
-                <Box>순위</Box>
-                <span>{infoData?.rank}</span>
-              </DetailItem>
-            </Overview>
-            <Overview>
-              <DetailItem>
-                <span>총 공급량</span>
-                <MaxSupply>{tickersData?.total_supply}</MaxSupply>
-              </DetailItem>
-              <DetailItem>
-                <span>가격</span>
-                <MaxSupply>
-                  ${tickersData?.quotes.USD.price.toFixed(2)}
-                </MaxSupply>
-              </DetailItem>
-            </Overview>
-            <Description>
-              <b>상세정보</b>
-              {infoData?.description}
-            </Description>
-            <InfoContainer>
-              <InfoButton isActive={chartMatch !== null}>
-                <Link to={`/${coinId}/chart`}>차트정보</Link>
-              </InfoButton>
-              <InfoButton isActive={priceMatch !== null}>
-                <Link to={`/${coinId}/price`}>가격정보</Link>
-              </InfoButton>
-            </InfoContainer>
+              <Overview>
+                <DetailItem>
+                  <Box>순위</Box>
+                  <span>{infoData?.rank}</span>
+                </DetailItem>
+              </Overview>
+              <Overview>
+                <DetailItem>
+                  <span>총 공급량</span>
+                  <MaxSupply>{tickersData?.total_supply}</MaxSupply>
+                </DetailItem>
+                <DetailItem>
+                  <span>가격</span>
+                  <MaxSupply>
+                    ${tickersData?.quotes.USD.price.toFixed(2)}
+                  </MaxSupply>
+                </DetailItem>
+              </Overview>
+              <Description>
+                <b>상세정보</b>
+                {infoData?.description}
+              </Description>
+              <InfoContainer>
+                <InfoButton isActive={chartMatch !== null}>
+                  <Link to={`/${coinId}/chart`}>차트정보</Link>
+                </InfoButton>
+                <InfoButton isActive={priceMatch !== null}>
+                  <Link to={`/${coinId}/price`}>가격정보</Link>
+                </InfoButton>
+              </InfoContainer>
             </SizingContainer>
-
           </Total>
 
           {/* 중첩 라우팅*/}

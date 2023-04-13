@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const SwitchTheme = styled.button`
   align-items: center;
@@ -112,7 +113,7 @@ const SubTitle = styled.span`
   margin-left: 5rem;
   color: #cdcdcd;
   @media screen and (max-width: 1090px) {
-   margin-left:0px;
+    margin-left: 0px;
   }
 `;
 
@@ -133,6 +134,9 @@ function Coins() {
 
   return (
     <Container>
+      <Helmet>
+        <title>Thorn Coin</title>
+      </Helmet>
       <Header>
         <Link to={"/"}>
           <Title>Thorn Coin</Title>
