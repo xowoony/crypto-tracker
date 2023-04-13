@@ -434,10 +434,10 @@ function Coin() {
                   ? infoData?.description
                   : `${infoData?.description.substring(0, 200)}...`}
                 <span
-                  style={{ color: "#110404", cursor: "pointer" }}
+                  style={{ color: "#ffffff", cursor: "pointer" }}
                   onClick={() => setReadMore(!readMore)}
                 >
-                  {readMore ? "[닫기]" : "[더보기]"}
+                  {readMore ? "[Close]" : "[More]"}
                 </span>
               </Description>
               <InfoContainer>
