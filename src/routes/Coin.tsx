@@ -30,6 +30,7 @@ const Header2 = styled.header`
   align-items: center;
   @media screen and (max-width: 1090px) {
     padding: 3rem;
+    height: 9rem;
   }
 `;
 
