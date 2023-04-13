@@ -29,7 +29,7 @@ const Header2 = styled.header`
   justify-content: center;
   align-items: center;
   @media screen and (max-width: 1090px) {
-    padding: 2rem;
+    padding: 3rem;
   }
 `;
 
@@ -59,11 +59,12 @@ const Total = styled.div`
 const Title2 = styled.h1`
   font-size: 30px;
   font-weight: 600;
-  margin-right: 2rem;
+  margin-right: 1.5rem;
   color: rgb(225, 177, 44);
   color: ${(props) => props.theme.accentColor};
   @media screen and (max-width: 1090px) {
     font-size: 30px;
+    margin-right: 0.7rem;
   }
 `;
 const SubTitle = styled.span`
@@ -82,7 +83,7 @@ const Header = styled.header`
   margin: none;
   justify-content: flex-start;
   align-items: center;
-  background-color: #1f1902;
+  background-color: rgb(31 25 2 / 26%);
   height: 5rem;
   @media screen and (max-width: 1090px) {
     align-items: center;
@@ -243,6 +244,10 @@ const Img = styled.img`
   width: 60px;
   height: 60px;
   margin-right: 20px;
+  @media screen and (max-width: 1090px) {
+    width: 40px;
+  height: 40px;
+  }
 `;
 
 const Box = styled.span`

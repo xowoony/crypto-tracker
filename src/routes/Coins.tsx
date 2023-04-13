@@ -35,8 +35,8 @@ const Header = styled.header`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: #1f1902;
   height: 5rem;
+  background-color: rgb(31 25 2 / 26%);
   @media screen and (max-width: 1090px) {
     align-items: center;
     display: flex;
@@ -77,10 +77,11 @@ const Coin = styled.li`
   }
   // react router link들이 결국 anchor로 바뀐다.
   &:hover {
-    transform:translateY(-10px);
+    transform:translateY(-3px);
+    transition: 0.2s ease-in;
     a {
       color: ${(props) => props.theme.accentColor};
-      background-color: #534e3c2d;
+      background-color: #7e853a46;
       border-radius: 15px;
     }
   }
