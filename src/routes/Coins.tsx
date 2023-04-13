@@ -75,11 +75,13 @@ const Coin = styled.li`
     padding: 20px;
     transition: color 0.2s ease-in;
   }
-
   // react router link들이 결국 anchor로 바뀐다.
   &:hover {
+    transform:translateY(-10px);
     a {
       color: ${(props) => props.theme.accentColor};
+      background-color: #534e3c2d;
+      border-radius: 15px;
     }
   }
 `;
@@ -131,7 +133,6 @@ interface ICoin {
 function Coins() {
   // useQuery를 통해 Coins 를 fetch
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
-
   return (
     <Container>
       <Helmet>

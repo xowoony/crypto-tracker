@@ -47,13 +47,13 @@ function Chart({ coinId }: ChartProps) {
         "로딩 중입니다..."
       ) : (
         <ApexChart
+          type="line"
           style={{
             width: "40rem",
             height: "20rem",
             padding: "2rem",
             marginBottom: "4rem",
           }}
-          type="line"
           series={[
             {
               name: "Price",
@@ -99,6 +99,7 @@ function Chart({ coinId }: ChartProps) {
             },
           }}
         />
+        
       )}
     </ChartGraph>
   );

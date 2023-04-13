@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
+import { useState } from "react";
 
 // 여기는 각각의 코인 페이지
 const Container = styled.div`
@@ -366,6 +367,7 @@ function Coin() {
 
   // 새로운 변수 만듦
   const loading = infoLoading || tickersLoading;
+  const [readMore, setReadMore] = useState(false);
   return (
     <Container>
       <Helmet>
@@ -419,7 +421,15 @@ function Coin() {
               </Overview>
               <Description>
                 <b>상세정보</b>
-                {infoData?.description}
+                {readMore
+                  ? infoData?.description
+                  : `${infoData?.description.substring(0, 200)}...`}
+                <span
+                  style={{ color: "#110404", cursor: "pointer" }}
+                  onClick={() => setReadMore(!readMore)}
+                >
+                  {readMore ? "[닫기]" : "[더보기]"}
+                </span>
               </Description>
               <InfoContainer>
                 <InfoButton isActive={chartMatch !== null}>
@@ -431,7 +441,6 @@ function Coin() {
               </InfoContainer>
             </SizingContainer>
           </Total>
-
           {/* 중첩 라우팅*/}
           <Routes>
             <Route path="chart" element={<Chart coinId={coinId!} />} />
