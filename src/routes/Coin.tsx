@@ -70,7 +70,7 @@ const Title2 = styled.h1`
 `;
 const SubTitle = styled.span`
   margin-left: 5rem;
-  color: #cdcdcd;
+  color:rgb(222 220 220);
   @media screen and (max-width: 1090px) {
     margin-left: 0px;
   }
@@ -84,7 +84,7 @@ const Header = styled.header`
   margin: none;
   justify-content: flex-start;
   align-items: center;
-  background-color: rgb(31 25 2 / 26%);
+  background-color: rgb(31 25 2 / 36%);
   height: 5rem;
   @media screen and (max-width: 1090px) {
     align-items: center;
@@ -434,7 +434,7 @@ function Coin() {
                   ? infoData?.description
                   : `${infoData?.description.substring(0, 200)}...`}
                 <span
-                  style={{ color: "#ffffff", cursor: "pointer" }}
+                  style={{ color: "rgb(141 141 141)", cursor: "pointer" }}
                   onClick={() => setReadMore(!readMore)}
                 >
                   {readMore ? "[Close]" : "[More]"}

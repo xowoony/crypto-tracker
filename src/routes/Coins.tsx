@@ -5,23 +5,6 @@ import { fetchCoins } from "../api";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 
-const SwitchTheme = styled.button`
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 7rem;
-  height: 3rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 0.5rem;
-  margin: 1rem 3rem 1rem auto;
-  color: white;
-  background-color: rgb(157 132 25);
-  &:hover {
-    background-color: rgb(49 39 22);
-  }
-`;
 
 const Container = styled.div`
   /* padding: 0px 20px; */
@@ -36,7 +19,7 @@ const Header = styled.header`
   justify-content: flex-start;
   align-items: center;
   height: 5rem;
-  background-color: rgb(31 25 2 / 26%);
+  background-color: rgb(31 25 2 / 36%);
   @media screen and (max-width: 1090px) {
     align-items: center;
     display: flex;
@@ -114,7 +97,7 @@ const Img = styled.img`
 
 const SubTitle = styled.span`
   margin-left: 5rem;
-  color: #cdcdcd;
+  color:rgb(222 220 220);
   @media screen and (max-width: 1090px) {
     margin-left: 0px;
   }
@@ -145,7 +128,6 @@ function Coins() {
         </Link>
         <SubTitle>Grab Your Own Coin!</SubTitle>
       </Header>
-      <SwitchTheme>테마 변경</SwitchTheme>
       {isLoading ? (
         <Loader>로딩중입니다...</Loader>
       ) : (

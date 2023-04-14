@@ -6,14 +6,14 @@ import { DefaultTheme } from "styled-components";
 export const darkTheme: DefaultTheme = {
   bgColor: "rgb(62 62 45)",
   textColor: "#f5f6fa",
-  accentColor: "#e1b12c",
+  accentColor: "rgb(255 187 0)",
   boxColor:  "#2b281b"
 }
 
 export const lightTheme: DefaultTheme = {
   bgColor: "rgb(238 235 198)",
   textColor: "black",
-  accentColor: "#e1b12c",
+  accentColor: "rgb(255 187 0)",
   boxColor:  "rgb(173 167 141)"
 };
 
