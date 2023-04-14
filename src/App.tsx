@@ -82,9 +82,8 @@ function App() {
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
-        <Router />
+        <Router toggleDark={toggleDark} />
         <ReactQueryDevtools initialIsOpen={true} />
-        <button onClick={toggleDark}>테마 변경</button>
       </ThemeProvider>
     </>
   );

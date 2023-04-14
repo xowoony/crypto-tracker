@@ -114,7 +114,11 @@ interface ICoin {
   type: string;
 }
 
-function Coins() {
+interface ICoinsProps {
+  toggleDark: () => void;
+}
+
+function Coins({toggleDark}:ICoinsProps) {
   // useQuery를 통해 Coins 를 fetch
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
   return (
@@ -127,6 +131,7 @@ function Coins() {
           <Title>Thorn Coin</Title>
         </Link>
         <SubTitle>Grab Your Own Coin!</SubTitle>
+        <button onClick={toggleDark}>테마 변경</button>
       </Header>
       {isLoading ? (
         <Loader>로딩중입니다...</Loader>

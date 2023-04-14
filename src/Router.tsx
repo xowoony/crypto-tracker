@@ -4,25 +4,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Coins from "./routes/Coins";
 import Coin from "./routes/Coin";
-import Chart from "./routes/Chart";
-import Price from "./routes/Price";
 
-function Router() {
+interface IRouterProps {
+  toggleDark: () => void;
+}
+
+function Router({ toggleDark }: IRouterProps) {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        {/* home - 코인들 */}
-        <Route path={`/`} element={<Coins />} />
-        {/* 중첩 라우팅 방식 */}
-        <Route path="/:coinId/*" element={<Coin/>} />
-        {/* 링크 방식 */}
-        {/* <Route path="chart" element={<Chart />} />
-        <Route path="price" element={<Price />} /> */}
-        {/* <Route path={`/:coinId/chart`} element={<Chart />} />
-        <Route path={`/:coinId/price`} element={<Price />} /> */}
+        <Route path={`/`} element={<Coins toggleDark={toggleDark} />} />
+        <Route path="/:coinId/*" element={<Coin />} />
       </Routes>
     </BrowserRouter>
   );
 }
 export default Router;
-// 작성해주고 App.tsx로 가서 Router를 렌더링해준다.
