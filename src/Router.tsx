@@ -7,14 +7,15 @@ import Coin from "./routes/Coin";
 
 interface IRouterProps {
   toggleDark: () => void;
+  isDark: boolean;
 }
 
-function Router({ toggleDark }: IRouterProps) {
+function Router({ toggleDark, isDark }: IRouterProps) {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path={`/`} element={<Coins toggleDark={toggleDark} />} />
-        <Route path="/:coinId/*" element={<Coin />} />
+        <Route path="/:coinId/*" element={<Coin isDark={isDark} />} />
       </Routes>
     </BrowserRouter>
   );

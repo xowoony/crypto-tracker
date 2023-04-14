@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
-import { useState } from "react";
 import { Helmet } from "react-helmet";
 
 

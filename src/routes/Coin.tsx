@@ -70,7 +70,7 @@ const Title2 = styled.h1`
 `;
 const SubTitle = styled.span`
   margin-left: 5rem;
-  color:rgb(222 220 220);
+  color: rgb(222 220 220);
   @media screen and (max-width: 1090px) {
     margin-left: 0px;
   }
@@ -332,7 +332,11 @@ interface PriceData {
   };
 }
 
-function Coin() {
+interface ICoinProps {
+  isDark: boolean;
+}
+
+function Coin({ isDark }: ICoinProps) {
   const { coinId } = useParams();
   const { state } = useLocation() as RouteState;
   const priceMatch = useMatch("/:coinId/price");
@@ -434,7 +438,11 @@ function Coin() {
                   ? infoData?.description
                   : `${infoData?.description.substring(0, 200)}...`}
                 <span
-                  style={{ color: "rgb(141 141 141)", cursor: "pointer" }}
+                  style={{
+                    color: "rgb(141 141 141)",
+                    paddingTop: "1rem",
+                    cursor: "pointer",
+                  }}
                   onClick={() => setReadMore(!readMore)}
                 >
                   {readMore ? "[Close]" : "[More]"}
@@ -452,7 +460,7 @@ function Coin() {
           </Total>
           {/* 중첩 라우팅*/}
           <Routes>
-            <Route path="chart" element={<Chart coinId={coinId!} />} />
+            <Route path="chart" element={<Chart isDark={isDark} coinId={coinId!} />} />
             <Route path="price" element={<Price />} />
           </Routes>
         </>
