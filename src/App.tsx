@@ -1,6 +1,7 @@
-import { createGlobalStyle } from "styled-components";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
 import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { darkTheme, lightTheme } from "./theme";
 
 // GlobalStyle을 렌더링하게 되면 전체 body의 color는 red가 될 것이다.
 // 기본값 제거를 위한 스타일 셋
@@ -36,6 +37,7 @@ footer, header, hgroup, main, menu, nav, section {
 }
 body {
   line-height: 1;
+  font-weight: 600;
 }
 menu, ol, ul {
   list-style: none;
@@ -75,9 +77,11 @@ a {
 function App() {
   return (
     <>
-      <GlobalStyle />
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={lightTheme}>
+        <GlobalStyle />
+        <Router />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
     </>
   );
 }
