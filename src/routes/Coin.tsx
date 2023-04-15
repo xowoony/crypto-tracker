@@ -333,10 +333,10 @@ interface PriceData {
 }
 
 interface ICoinProps {
-  isDark: boolean;
+  
 }
 
-function Coin({ isDark }: ICoinProps) {
+function Coin({  }: ICoinProps) {
   const { coinId } = useParams();
   const { state } = useLocation() as RouteState;
   const priceMatch = useMatch("/:coinId/price");
@@ -460,7 +460,7 @@ function Coin({ isDark }: ICoinProps) {
           </Total>
           {/* 중첩 라우팅*/}
           <Routes>
-            <Route path="chart" element={<Chart isDark={isDark} coinId={coinId!} />} />
+            <Route path="chart" element={<Chart coinId={coinId!} />} />
             <Route path="price" element={<Price />} />
           </Routes>
         </>

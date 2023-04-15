@@ -18,7 +18,6 @@ interface IHistorical {
 
 interface ChartProps {
   coinId: string;
-  isDark: boolean;
 }
 
 const ChartGraph = styled.div`
@@ -28,7 +27,7 @@ const ChartGraph = styled.div`
   justify-content: center;
 `;
 
-function Chart({ coinId, isDark }: ChartProps) {
+function Chart({ coinId }: ChartProps) {
   // 여러개를 받아와야하므로 배열로!
   const { isLoading, data } = useQuery<IHistorical[]>(
     ["ohlcv", coinId],
@@ -63,7 +62,7 @@ function Chart({ coinId, isDark }: ChartProps) {
           ]}
           options={{
             theme: {
-              mode: isDark ? "dark" : "light",
+              mode: false ? "dark" : "light",
             },
             chart: {
               height: "500px",
