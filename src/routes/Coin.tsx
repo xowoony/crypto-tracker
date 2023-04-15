@@ -82,6 +82,7 @@ const SubTitle = styled.span`
 `;
 
 const Header = styled.header`
+font-family: 'Bebas Neue', cursive;
   width: 100%;
   position: fixed;
   height: 15rem;

@@ -14,6 +14,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
+  font-family: "Bebas Neue", cursive;
   width: 100%;
   position: fixed;
   height: 15rem;
@@ -38,7 +39,6 @@ const CoinsList = styled.ul`
   @media screen and (max-width: 1090px) {
     grid-template-columns: 4fr;
     width: 100%;
-    
   }
 `;
 
