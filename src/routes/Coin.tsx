@@ -26,12 +26,13 @@ const Container = styled.div`
 `;
 
 const Header2 = styled.header`
+  font-family: "Anton", sans-serif;
   height: 15rem;
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 7rem;
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
   @media screen and (max-width: 1090px) {
     padding: 3rem;
     padding-top: 10rem;
@@ -63,8 +64,9 @@ const Total = styled.div`
 `;
 
 const Title2 = styled.h1`
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 600;
+  font-family: "Fira Sans Condensed", sans-serif;
   margin-right: 1.5rem;
   color: rgb(225, 177, 44);
   color: ${(props) => props.theme.accentColor};
@@ -77,16 +79,16 @@ const SubTitle = styled.span`
   margin-left: 5rem;
   color: rgb(222 220 220);
   font-size: 1.3rem;
-    margin-left: 5rem;
-    color: rgb(222, 220, 220);
-    font-weight: 100;
+  margin-left: 5rem;
+  color: rgb(222, 220, 220);
+  font-weight: 100;
   @media screen and (max-width: 1090px) {
     margin-left: 0px;
   }
 `;
 
 const Header = styled.header`
-font-family: 'Bebas Neue', cursive;
+  font-family: "Bebas Neue", cursive;
   width: 100%;
   position: fixed;
   height: 15rem;
@@ -127,6 +129,8 @@ const LogoContainer = styled.div`
 `;
 
 const Symbol = styled.span`
+  font-weight: 100;
+  font-family: "Orbitron", sans-serif;
   align-items: center;
   display: flex;
   flex-direction: row;

@@ -32,6 +32,7 @@ const Header = styled.header`
 `;
 
 const CoinsList = styled.ul`
+  font-family: "Fira Sans Condensed", sans-serif;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1rem 2rem;
@@ -47,7 +48,7 @@ const Coin = styled.li`
   color: rgb(255 255 255);
   border-radius: 15px;
   margin-bottom: 10px;
-  font-weight: 600;
+  font-weight: 100;
   a {
     height: 7rem;
     align-items: center;
@@ -99,6 +100,8 @@ const Img = styled.img`
 
 const SubTitle = styled.span`
   margin-left: 5rem;
+  font-size: 1.3rem;
+  font-weight: 100;
   color: rgb(222 220 220);
   @media screen and (max-width: 1090px) {
     margin-left: 0px;
