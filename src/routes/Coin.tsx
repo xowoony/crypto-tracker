@@ -193,6 +193,7 @@ const Loader = styled.div`
   text-align: center;
   font-size: 1rem;
   display: block;
+  margin-top: 2rem;
 `;
 
 // detail
