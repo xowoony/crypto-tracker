@@ -76,6 +76,10 @@ const Title2 = styled.h1`
 const SubTitle = styled.span`
   margin-left: 5rem;
   color: rgb(222 220 220);
+  font-size: 1.3rem;
+    margin-left: 5rem;
+    color: rgb(222, 220, 220);
+    font-weight: 100;
   @media screen and (max-width: 1090px) {
     margin-left: 0px;
   }
