@@ -2,6 +2,8 @@ import { useQuery } from "react-query";
 import { fetchCoinHistory } from "../api";
 import ApexChart from "react-apexcharts";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atom";
 
 // data 타입 정의
 interface IHistorical {
@@ -36,6 +38,9 @@ function Chart({ coinId }: ChartProps) {
       refetchInterval: 10000,
     }
   );
+  // 테마 적용을 위한 atom
+  const isDark = useRecoilValue(isDarkAtom);
+
   // apex chart는 type에서 만들 수 있는 모든 차트 종류를 자동완성으로 보여줌
   // <ApexChart /> 안에 작성해주면 된다. type="자동완성으로 뜸 - 선택"
   // options 도 작성해주도록 한다.
@@ -62,7 +67,7 @@ function Chart({ coinId }: ChartProps) {
           ]}
           options={{
             theme: {
-              mode: false ? "dark" : "light",
+              mode: isDark ? "dark" : "light",
             },
             chart: {
               height: "500px",

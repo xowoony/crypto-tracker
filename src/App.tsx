@@ -3,6 +3,8 @@ import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { darkTheme, lightTheme } from "./theme";
 import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atom";
 
 // GlobalStyle을 렌더링하게 되면 전체 body의 color는 red가 될 것이다.
 // 기본값 제거를 위한 스타일 셋
@@ -73,14 +75,18 @@ a {
 }
 `;
 
+
 // Fragment (일종의 유령 컴포넌트) 를 사용하여 반환한다.
 // 부모없이 서로 붙어있는 것들을 리턴할 수 있게 됨.
+// useRecoilValue(isDarkAtom);
+// 어플리케이션이 isDarkAtom으로 연결되고, isDarkAtom의 기본값은 false이다.
 function App() {
+  const isDark = useRecoilValue(isDarkAtom);
   return (
     <>
-      <ThemeProvider theme={false ? darkTheme : lightTheme}>
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
-        <Router/>
+        <Router />
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
     </>

@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
 import { Helmet } from "react-helmet";
-
+import { useSetRecoilState } from "recoil";
+import { isDarkAtom } from "../atom";
 
 const Container = styled.div`
   /* padding: 0px 20px; */
@@ -59,7 +60,7 @@ const Coin = styled.li`
   }
   // react router link들이 결국 anchor로 바뀐다.
   &:hover {
-    transform:translateY(-3px);
+    transform: translateY(-3px);
     transition: 0.2s ease-in;
     a {
       color: ${(props) => props.theme.accentColor};
@@ -96,7 +97,7 @@ const Img = styled.img`
 
 const SubTitle = styled.span`
   margin-left: 5rem;
-  color:rgb(222 220 220);
+  color: rgb(222 220 220);
   @media screen and (max-width: 1090px) {
     margin-left: 0px;
   }
@@ -113,13 +114,15 @@ interface ICoin {
   type: string;
 }
 
-interface ICoinsProps {
-
-}
+interface ICoinsProps {}
 
 function Coins() {
   // useQuery를 통해 Coins 를 fetch
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
+  // 버튼누르면 state가 변경되고 theme을 변경시키기 위한 useSetRecoilState();
+  // setter function은 value를 설정(set) 하는 function이다.
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
   return (
     <Container>
       <Helmet>
@@ -130,6 +133,7 @@ function Coins() {
           <Title>Thorn Coin</Title>
         </Link>
         <SubTitle>Grab Your Own Coin!</SubTitle>
+        <button onClick={toggleDarkAtom}>change Theme</button>
       </Header>
       {isLoading ? (
         <Loader>로딩중입니다...</Loader>
