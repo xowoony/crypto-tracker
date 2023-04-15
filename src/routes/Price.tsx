@@ -32,7 +32,7 @@ const PriceDetail = styled.div`
   div {
     margin-bottom: 0.2rem;
     font-size: 1rem;
-    color: #c0ba87;
+    color: rgb(161 150 51);
   }
 `;
 
