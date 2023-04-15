@@ -87,8 +87,7 @@ const Title = styled.h1`
 const Loader = styled.div`
   text-align: center;
   font-size: 1rem;
-  display: block;
-  margin-top: 3rem;
+  padding-top: 10rem;
 `;
 
 // img 컴포넌트
