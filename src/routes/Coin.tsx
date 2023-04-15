@@ -261,6 +261,39 @@ const Box = styled.span`
   max-width: 900px;
 `;
 
+const ThemeContainer = styled.div`
+    margin-left: auto;
+  @media screen and (max-width: 1090px) {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    /* height: 100%; */
+    position: absolute;
+    margin-right: 3rem;
+  }
+`;
+
+const ThemeButton = styled.button`
+  width: 5rem;
+  height: 2rem;
+  background-color: #00000052;
+  color: white;
+  margin-left: auto;
+  margin-right: 5rem;
+  border: 0.0625rem solid rgba(255, 255, 255, 0.24);
+  border-radius: 0.3rem;
+  cursor: pointer;
+  @media screen and (max-width: 1090px) {
+    position: absolute;
+    margin-right: 0;
+    width: 3.5rem;
+    font-size: 0.5rem;
+    height: 2rem;
+  }
+`;
+
 // 인터페이스
 interface RouteState {
   state: {
@@ -398,7 +431,9 @@ function Coin({  }: ICoinProps) {
           <Title>Thorn Coin</Title>
         </Link>
         <SubTitle>Grab Your Own Coin!</SubTitle>
-        <button onClick={toggleDarkAtom}>change Theme</button>
+        <ThemeContainer>
+          <ThemeButton onClick={toggleDarkAtom}>테마변경</ThemeButton>
+        </ThemeContainer>
       </Header>
       <Header2>
         <HomeButton>
