@@ -14,6 +14,8 @@ import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
 import { useState } from "react";
+import { useSetRecoilState } from "recoil";
+import { isDarkAtom } from "../atom";
 
 // 여기는 각각의 코인 페이지
 const Container = styled.div`
@@ -378,6 +380,9 @@ function Coin({  }: ICoinProps) {
   }, [coinId]);
  */
 
+  // theme 변경을 위한 atom
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
   // 새로운 변수 만듦
   const loading = infoLoading || tickersLoading;
   const [readMore, setReadMore] = useState(false);
@@ -393,6 +398,7 @@ function Coin({  }: ICoinProps) {
           <Title>Thorn Coin</Title>
         </Link>
         <SubTitle>Grab Your Own Coin!</SubTitle>
+        <button onClick={toggleDarkAtom}>change Theme</button>
       </Header>
       <Header2>
         <HomeButton>
