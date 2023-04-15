@@ -14,6 +14,8 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
+  width: 100%;
+  position: fixed;
   height: 15rem;
   display: flex;
   justify-content: flex-start;
@@ -32,11 +34,11 @@ const CoinsList = styled.ul`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1rem 2rem;
-  padding: 3rem;
+  padding: 8rem 2rem;
   @media screen and (max-width: 1090px) {
     grid-template-columns: 4fr;
     width: 100%;
-    padding: 2rem;
+    
   }
 `;
 
@@ -105,7 +107,7 @@ const SubTitle = styled.span`
 `;
 
 const ThemeContainer = styled.div`
-    margin-left: auto;
+  margin-left: auto;
   @media screen and (max-width: 1090px) {
     align-items: center;
     display: flex;

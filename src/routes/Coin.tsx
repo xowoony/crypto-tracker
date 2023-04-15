@@ -30,9 +30,12 @@ const Header2 = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 7rem;
+    margin-bottom: 1rem;
   @media screen and (max-width: 1090px) {
     padding: 3rem;
-    height: 9rem;
+    padding-top: 10rem;
+    height: 4rem;
   }
 `;
 
@@ -79,6 +82,8 @@ const SubTitle = styled.span`
 `;
 
 const Header = styled.header`
+  width: 100%;
+  position: fixed;
   height: 15rem;
   display: flex;
   padding: none;
@@ -263,7 +268,7 @@ const Box = styled.span`
 `;
 
 const ThemeContainer = styled.div`
-    margin-left: auto;
+  margin-left: auto;
   @media screen and (max-width: 1090px) {
     align-items: center;
     display: flex;
@@ -368,11 +373,9 @@ interface PriceData {
   };
 }
 
-interface ICoinProps {
-  
-}
+interface ICoinProps {}
 
-function Coin({  }: ICoinProps) {
+function Coin({}: ICoinProps) {
   const { coinId } = useParams();
   const { state } = useLocation() as RouteState;
   const priceMatch = useMatch("/:coinId/price");
