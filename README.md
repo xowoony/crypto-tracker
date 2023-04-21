@@ -1,4 +1,4 @@
-# crypto-tracker
+# THORN COIN
 
 <h4>:purple_heart:  a project under development..  :purple_heart:</h4>
 <h2>Technologies Used</h2>
