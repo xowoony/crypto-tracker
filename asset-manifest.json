@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/crypto-tracker/static/js/main.62999fec.js",
-    "index.html": "/crypto-tracker/index.html",
-    "main.62999fec.js.map": "/crypto-tracker/static/js/main.62999fec.js.map"
+    "main.js": "/thorn-coin/static/js/main.ef0aa1e6.js",
+    "index.html": "/thorn-coin/index.html",
+    "main.ef0aa1e6.js.map": "/thorn-coin/static/js/main.ef0aa1e6.js.map"
   },
   "entrypoints": [
-    "static/js/main.62999fec.js"
+    "static/js/main.ef0aa1e6.js"
   ]
 }
