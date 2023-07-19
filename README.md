@@ -1,4 +1,4 @@
-# crypto-tracker
+# THORN COIN
 
 <h4>:purple_heart:  a project under development..  :purple_heart:</h4>
 <h2>Technologies Used</h2>
@@ -47,4 +47,4 @@ Apex Charts
 <h2>Distribution</h2>
 a project under development..
 <br>
-https://xowoony.github.io/crypto-tracker/
+https://xowoony.github.io/thorn-coin/
