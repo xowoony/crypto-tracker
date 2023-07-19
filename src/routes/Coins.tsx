@@ -14,6 +14,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
+  z-index: 10000;
   font-family: "Bebas Neue", cursive;
   width: 100%;
   position: fixed;
@@ -24,6 +25,7 @@ const Header = styled.header`
   height: 5rem;
   background-color: rgb(31 25 2 / 36%);
   @media screen and (max-width: 1090px) {
+    z-index: 10000;
     align-items: center;
     display: flex;
     flex-direction: column;

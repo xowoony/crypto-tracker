@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import App from "./App";
-import React from "react";
 import { RecoilRoot } from "recoil";
 
 // queryClient 작성
